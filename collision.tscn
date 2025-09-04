@@ -102,7 +102,7 @@ turn_mode = 0
 [node name="PlayerBody" parent="XROrigin3D" instance=ExtResource("4_ylkwj")]
 
 [node name="PickableObject" parent="." instance=ExtResource("8_mgq83")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0211635, 2.0251, -2.34723)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -2)
 
 [node name="table" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.489415, -2.40817)

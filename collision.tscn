@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://b3andlsposkc1"]
+[gd_scene load_steps=20 format=3 uid="uid://b3andlsposkc1"]
 
 [ext_resource type="Script" uid="uid://cm836a1gqeg5u" path="res://code.gd" id="1_m0q3j"]
 [ext_resource type="PackedScene" uid="uid://hpr0v012ghsb" path="res://addons/godot-xr-tools/hands/scenes/highpoly/left_tac_glove.tscn" id="2_3fq0p"]
@@ -27,6 +27,8 @@ size = Vector3(5.00897, 1, 24.9321)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0cmjk"]
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0tpuo"]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cxk7p"]
 albedo_color = Color(0.923289, 0.928479, 0.522095, 1)
 
@@ -34,6 +36,9 @@ albedo_color = Color(0.923289, 0.928479, 0.522095, 1)
 material = SubResource("StandardMaterial3D_cxk7p")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ljpd4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0tpuo"]
+size = Vector3(5.21143, 5.44385, 2.75281)
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_m0q3j")
@@ -101,6 +106,10 @@ turn_mode = 0
 
 [node name="PlayerBody" parent="XROrigin3D" instance=ExtResource("4_ylkwj")]
 
+[node name="CollisionShape3D" type="CollisionShape3D" parent="XROrigin3D/PlayerBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_0tpuo")
+
 [node name="PickableObject" parent="." instance=ExtResource("8_mgq83")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -2)
 
@@ -112,3 +121,9 @@ mesh = SubResource("BoxMesh_la0rv")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="table/StaticBody3D"]
 shape = SubResource("BoxShape3D_ljpd4")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0183105, 2.22192, -11.6452)
+shape = SubResource("BoxShape3D_0tpuo")

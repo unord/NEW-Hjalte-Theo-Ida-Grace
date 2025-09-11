@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://ybmx2t1cv0tx"]
+[gd_scene load_steps=17 format=3 uid="uid://ybmx2t1cv0tx"]
 
 [ext_resource type="PackedScene" uid="uid://hpr0v012ghsb" path="res://addons/godot-xr-tools/hands/scenes/highpoly/left_tac_glove.tscn" id="1_kah3p"]
 [ext_resource type="PackedScene" uid="uid://b4ysuy43poobf" path="res://addons/godot-xr-tools/functions/function_pickup.tscn" id="2_3uel5"]
@@ -15,27 +15,51 @@ material = SubResource("StandardMaterial3D_qq5rs")
 size = Vector2(5, 25)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_i54pb"]
-size = Vector3(5.00897, 1, 24.9321)
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6nmfm"]
+size = Vector3(7.53666, 1, 7.19259)
 
 [sub_resource type="Environment" id="Environment_kah3p"]
 background_mode = 2
 background_color = Color(0.133912, 0.239148, 0.316038, 1)
 
-[node name="Node3D" type="Node3D"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kah3p"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_j5qhd"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3uel5"]
+albedo_color = Color(1, 1, 0.0784314, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_j5qhd"]
+material = SubResource("StandardMaterial3D_3uel5")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kah3p"]
+albedo_color = Color(0.149072, 0.485143, 0.680779, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_3uel5"]
+material = SubResource("StandardMaterial3D_kah3p")
+
+[node name="kokken" type="Node3D"]
 
 [node name="floor" type="StaticBody3D" parent="."]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 32.6977, 0, -0.621848)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="floor"]
+transform = Transform3D(1.47242, 0, 0, 0, 1, 0, 0, 0, 0.289946, 0.03, 0, 0)
 mesh = SubResource("PlaneMesh_c7oah")
 skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="floor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0297251, -0.460612, -0.0342999)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.208485, -0.460612, -5.88894e-05)
 shape = SubResource("BoxShape3D_i54pb")
 
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.975365, 0.220595, 0, -0.220595, 0.975365, 0, 4.70302, 4.91987)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="DirectionalLight3D"]
+environment = SubResource("Environment_kah3p")
+
 [node name="Player" type="XROrigin3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="XRCamera3D" type="XRCamera3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
@@ -62,14 +86,27 @@ turn_mode = 0
 [node name="FunctionPickup" parent="Player/righty" instance=ExtResource("2_3uel5")]
 
 [node name="Player" parent="Player" instance=ExtResource("6_q8m7d")]
+collision_layer = 524294
+collision_mask = 769
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player/Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.10933, 0)
-shape = SubResource("CapsuleShape3D_6nmfm")
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 1.333, 0)
+shape = SubResource("CapsuleShape3D_kah3p")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.975365, 0.220595, 0, -0.220595, 0.975365, 0, 4.70302, 4.91987)
-shadow_enabled = true
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.6268, 0.823342, -16.0403)
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="DirectionalLight3D"]
-environment = SubResource("Environment_kah3p")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_j5qhd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("BoxMesh_j5qhd")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.6268, 0.823342, 16.0934)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D2"]
+mesh = SubResource("BoxMesh_3uel5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
+shape = SubResource("BoxShape3D_j5qhd")

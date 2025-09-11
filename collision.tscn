@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://b3andlsposkc1"]
+[gd_scene load_steps=23 format=3 uid="uid://b3andlsposkc1"]
 
 [ext_resource type="Script" uid="uid://cm836a1gqeg5u" path="res://code.gd" id="1_m0q3j"]
 [ext_resource type="PackedScene" uid="uid://hpr0v012ghsb" path="res://addons/godot-xr-tools/hands/scenes/highpoly/left_tac_glove.tscn" id="2_3fq0p"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://b6bk2pj8vbj28" path="res://addons/godot-xr-tools/functions/movement_turn.tscn" id="5_0cmjk"]
 [ext_resource type="PackedScene" uid="uid://8jwqcsjmke1c" path="res://cube.tscn" id="8_mgq83"]
 [ext_resource type="PackedScene" uid="uid://das8mt0d65p7r" path="res://anima.blend" id="10_cxk7p"]
+[ext_resource type="AudioStream" uid="uid://bs8b4li0cfg8m" path="res://Monday Chill.wav" id="10_la0rv"]
 
 [sub_resource type="Environment" id="Environment_1bey1"]
 background_mode = 2
@@ -19,14 +20,15 @@ albedo_color = Color(0.996379, 0.892274, 0.740514, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_1bey1"]
 material = SubResource("StandardMaterial3D_mgq83")
-size = Vector2(5, 25)
+size = Vector2(5, 50)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_m0q3j"]
-size = Vector3(5.00897, 1, 24.9321)
+size = Vector3(5.00897, 1, 49.5262)
 
 [sub_resource type="BoxMesh" id="BoxMesh_f0uo7"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0cmjk"]
+size = Vector3(1, 1, 2.02405)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mgq83"]
 
@@ -39,8 +41,9 @@ material = SubResource("StandardMaterial3D_cxk7p")
 [sub_resource type="BoxShape3D" id="BoxShape3D_ljpd4"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_la0rv"]
+size = Vector3(5.36659, 1.01492, 1.09106)
 
-[sub_resource type="BoxMesh" id="BoxMesh_ljpd4"]
+[sub_resource type="BoxMesh" id="BoxMesh_cxk7p"]
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_m0q3j")
@@ -53,34 +56,38 @@ shadow_enabled = true
 environment = SubResource("Environment_1bey1")
 
 [node name="floor" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.204772, -33.8584)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12.2174)
 mesh = SubResource("PlaneMesh_1bey1")
 skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="floor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0297251, -0.460612, -0.0342999)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0297251, -0.460612, 12.4643)
 shape = SubResource("BoxShape3D_m0q3j")
 
 [node name="walls" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.204772, -33.8584)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="walls"]
-transform = Transform3D(1, 0, 0, 0, 5, 0, 0, 0, 25, 3.02, 2.38064, 0)
+transform = Transform3D(1, 0, 0, 0, 5, 0, 0, 0, 49.9778, 3.02, 2.38064, 12.3944)
 mesh = SubResource("BoxMesh_f0uo7")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="walls"]
-transform = Transform3D(1, 0, 0, 0, 5, 0, 0, 0, 25, -2.93903, 2.38064, 0)
+transform = Transform3D(1, 0, 0, 0, 5, 0, 0, 0, 49.9778, -2.93903, 2.38064, 12.3944)
 mesh = SubResource("BoxMesh_f0uo7")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="walls"]
-transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, -14.9694, 0, 0)
+transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, -14.9694, 0, 13.2019)
 shape = SubResource("BoxShape3D_0cmjk")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="walls"]
-transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, 15.0786, 0, 0)
+transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, 15.0786, 0, 12.0926)
 shape = SubResource("BoxShape3D_0cmjk")
 
 [node name="Player" type="XROrigin3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -0.143033, 0)
 
 [node name="XRCamera3D" type="XRCamera3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
@@ -111,14 +118,14 @@ collision_layer = 524294
 collision_mask = 769
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player/Player"]
-transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 1.33297, -0.508902)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.526939, 1.03602, 0)
 shape = SubResource("CapsuleShape3D_mgq83")
 
 [node name="PickableObject" parent="." instance=ExtResource("8_mgq83")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6613, -2.68473)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.974428, -2.68473)
 
 [node name="table" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.489415, -2.40817)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.284643, -2.40817)
 mesh = SubResource("BoxMesh_la0rv")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="table"]
@@ -127,7 +134,8 @@ mesh = SubResource("BoxMesh_la0rv")
 shape = SubResource("BoxShape3D_ljpd4")
 
 [node name="anima" parent="." instance=ExtResource("10_cxk7p")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1.25734, -7.80123)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1.05257, -7.80123)
+visible = false
 
 [node name="Light" parent="anima" index="0"]
 visible = false
@@ -136,18 +144,23 @@ visible = false
 visible = false
 
 [node name="Wall" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.426031, -11.6013)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.221259, -44.3225)
 collision_layer = 4
 collision_mask = 5
 contact_monitor = true
 max_contacts_reported = 1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.131285, -0.0320972, 0.0455322)
 shape = SubResource("BoxShape3D_la0rv")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Wall"]
-transform = Transform3D(1, -6.16032e-05, -3.16156e-05, 6.16032e-05, 1, 8.90955e-06, 3.16156e-05, -8.90955e-06, 1, 0, 0, 0)
-mesh = SubResource("BoxMesh_ljpd4")
+visible = false
+mesh = SubResource("BoxMesh_cxk7p")
+
+[node name="background music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_la0rv")
+autoplay = true
 
 [connection signal="body_entered" from="Wall" to="Player/Player" method="_on_wall_body_entered"]
 

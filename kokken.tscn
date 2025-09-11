@@ -40,7 +40,7 @@ material = SubResource("StandardMaterial3D_kah3p")
 [node name="kokken" type="Node3D"]
 
 [node name="floor" type="StaticBody3D" parent="."]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 29.6268, 0, -2.89664)
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 29.6268, 0, -2.89664)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="floor"]
 transform = Transform3D(3.79302, 0, 0, 0, 1, 0, 0, 0, 0.686993, 0, 0, 1.48367)

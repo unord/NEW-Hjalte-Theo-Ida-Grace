@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://ddwyurg53rrvs"]
+
+[ext_resource type="PackedScene" uid="uid://das8mt0d65p7r" path="res://anima.blend" id="1_lys4t"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="anima" parent="." instance=ExtResource("1_lys4t")]
+
+[node name="Light" parent="anima" index="0"]
+visible = false
+
+[node name="Camera" parent="anima" index="1"]
+visible = false
+
+[editable path="anima"]

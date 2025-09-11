@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://b3andlsposkc1"]
+[gd_scene load_steps=22 format=3 uid="uid://b3andlsposkc1"]
 
 [ext_resource type="Script" uid="uid://cm836a1gqeg5u" path="res://code.gd" id="1_m0q3j"]
 [ext_resource type="PackedScene" uid="uid://hpr0v012ghsb" path="res://addons/godot-xr-tools/hands/scenes/highpoly/left_tac_glove.tscn" id="2_3fq0p"]
@@ -8,16 +8,17 @@
 [ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="4_ylkwj"]
 [ext_resource type="PackedScene" uid="uid://b6bk2pj8vbj28" path="res://addons/godot-xr-tools/functions/movement_turn.tscn" id="5_0cmjk"]
 [ext_resource type="PackedScene" uid="uid://8jwqcsjmke1c" path="res://cube.tscn" id="8_mgq83"]
+[ext_resource type="PackedScene" uid="uid://das8mt0d65p7r" path="res://anima.blend" id="10_cxk7p"]
 
 [sub_resource type="Environment" id="Environment_1bey1"]
 background_mode = 2
 background_color = Color(0.133912, 0.239148, 0.316038, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m0q3j"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mgq83"]
 albedo_color = Color(0.996379, 0.892274, 0.740514, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_1bey1"]
-material = SubResource("StandardMaterial3D_m0q3j")
+material = SubResource("StandardMaterial3D_mgq83")
 size = Vector2(5, 25)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_m0q3j"]
@@ -27,7 +28,7 @@ size = Vector3(5.00897, 1, 24.9321)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0cmjk"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0tpuo"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mgq83"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cxk7p"]
 albedo_color = Color(0.923289, 0.928479, 0.522095, 1)
@@ -37,8 +38,9 @@ material = SubResource("StandardMaterial3D_cxk7p")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ljpd4"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_0tpuo"]
-size = Vector3(5.21143, 5.44385, 2.75281)
+[sub_resource type="BoxShape3D" id="BoxShape3D_la0rv"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ljpd4"]
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_m0q3j")
@@ -78,40 +80,42 @@ shape = SubResource("BoxShape3D_0cmjk")
 transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, 15.0786, 0, 0)
 shape = SubResource("BoxShape3D_0cmjk")
 
-[node name="XROrigin3D" type="XROrigin3D" parent="."]
+[node name="Player" type="XROrigin3D" parent="."]
 
-[node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
+[node name="XRCamera3D" type="XRCamera3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
 
-[node name="lefty" type="XRController3D" parent="XROrigin3D"]
+[node name="lefty" type="XRController3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1, -0.5)
 tracker = &"left_hand"
 
-[node name="LeftHand" parent="XROrigin3D/lefty" instance=ExtResource("2_3fq0p")]
+[node name="LeftHand" parent="Player/lefty" instance=ExtResource("2_3fq0p")]
 
-[node name="FunctionPickup" parent="XROrigin3D/lefty" instance=ExtResource("3_0tpuo")]
+[node name="FunctionPickup" parent="Player/lefty" instance=ExtResource("3_0tpuo")]
 
-[node name="righty" type="XRController3D" parent="XROrigin3D"]
+[node name="righty" type="XRController3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1, -0.5)
 tracker = &"right_hand"
 
-[node name="RightHand" parent="XROrigin3D/righty" instance=ExtResource("3_ylkwj")]
+[node name="RightHand" parent="Player/righty" instance=ExtResource("3_ylkwj")]
 
-[node name="MovementDirect" parent="XROrigin3D/righty" instance=ExtResource("4_f0uo7")]
+[node name="MovementDirect" parent="Player/righty" instance=ExtResource("4_f0uo7")]
 
-[node name="MovementTurn" parent="XROrigin3D/righty" instance=ExtResource("5_0cmjk")]
+[node name="MovementTurn" parent="Player/righty" instance=ExtResource("5_0cmjk")]
 turn_mode = 0
 
-[node name="FunctionPickup" parent="XROrigin3D/righty" instance=ExtResource("3_0tpuo")]
+[node name="FunctionPickup" parent="Player/righty" instance=ExtResource("3_0tpuo")]
 
-[node name="PlayerBody" parent="XROrigin3D" instance=ExtResource("4_ylkwj")]
+[node name="Player" parent="Player" instance=ExtResource("4_ylkwj")]
+collision_layer = 524294
+collision_mask = 769
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="XROrigin3D/PlayerBody"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("CapsuleShape3D_0tpuo")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player/Player"]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 1.33297, -0.508902)
+shape = SubResource("CapsuleShape3D_mgq83")
 
 [node name="PickableObject" parent="." instance=ExtResource("8_mgq83")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6613, -2.68473)
 
 [node name="table" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.489415, -2.40817)
@@ -122,8 +126,29 @@ mesh = SubResource("BoxMesh_la0rv")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="table/StaticBody3D"]
 shape = SubResource("BoxShape3D_ljpd4")
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="anima" parent="." instance=ExtResource("10_cxk7p")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1.25734, -7.80123)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0183105, 2.22192, -11.6452)
-shape = SubResource("BoxShape3D_0tpuo")
+[node name="Light" parent="anima" index="0"]
+visible = false
+
+[node name="Camera" parent="anima" index="1"]
+visible = false
+
+[node name="Wall" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.426031, -11.6013)
+collision_layer = 4
+collision_mask = 5
+contact_monitor = true
+max_contacts_reported = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall"]
+shape = SubResource("BoxShape3D_la0rv")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Wall"]
+transform = Transform3D(1, -6.16032e-05, -3.16156e-05, 6.16032e-05, 1, 8.90955e-06, 3.16156e-05, -8.90955e-06, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_ljpd4")
+
+[connection signal="body_entered" from="Wall" to="Player/Player" method="_on_wall_body_entered"]
+
+[editable path="anima"]

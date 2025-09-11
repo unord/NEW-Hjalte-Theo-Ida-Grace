@@ -14,6 +14,3 @@ func _ready():
 		get_viewport().use_xr = true
 	else:
 		print("OpenXR not initialized, please check if your headset is connected")
-
-func _on_trigger_body_entered(_body: Node3D) -> void:
-	pass # Replace with function body.

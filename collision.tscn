@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="4_ylkwj"]
 [ext_resource type="PackedScene" uid="uid://b6bk2pj8vbj28" path="res://addons/godot-xr-tools/functions/movement_turn.tscn" id="5_0cmjk"]
 [ext_resource type="PackedScene" uid="uid://8jwqcsjmke1c" path="res://cube.tscn" id="8_mgq83"]
-[ext_resource type="Script" uid="uid://be0k47gfdbmx" path="res://trigger.gd" id="9_mgq83"]
 [ext_resource type="PackedScene" uid="uid://das8mt0d65p7r" path="res://anima.blend" id="10_cxk7p"]
 
 [sub_resource type="Environment" id="Environment_1bey1"]
@@ -39,8 +38,9 @@ material = SubResource("StandardMaterial3D_cxk7p")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ljpd4"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_0tpuo"]
-size = Vector3(5.21143, 5.44385, 2.75281)
+[sub_resource type="BoxShape3D" id="BoxShape3D_la0rv"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ljpd4"]
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_m0q3j")
@@ -107,9 +107,11 @@ turn_mode = 0
 [node name="FunctionPickup" parent="Player/righty" instance=ExtResource("3_0tpuo")]
 
 [node name="Player" parent="Player" instance=ExtResource("4_ylkwj")]
+collision_layer = 524294
+collision_mask = 769
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player/Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.10933, 0)
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 1.33297, -0.508902)
 shape = SubResource("CapsuleShape3D_mgq83")
 
 [node name="PickableObject" parent="." instance=ExtResource("8_mgq83")]
@@ -124,13 +126,6 @@ mesh = SubResource("BoxMesh_la0rv")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="table/StaticBody3D"]
 shape = SubResource("BoxShape3D_ljpd4")
 
-[node name="trigger" type="Area3D" parent="."]
-script = ExtResource("9_mgq83")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="trigger"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0183105, 2.22192, -11.6452)
-shape = SubResource("BoxShape3D_0tpuo")
-
 [node name="anima" parent="." instance=ExtResource("10_cxk7p")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1.25734, -7.80123)
 
@@ -140,6 +135,20 @@ visible = false
 [node name="Camera" parent="anima" index="1"]
 visible = false
 
-[connection signal="body_entered" from="trigger" to="." method="_on_trigger_body_entered"]
+[node name="Wall" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.426031, -11.6013)
+collision_layer = 4
+collision_mask = 5
+contact_monitor = true
+max_contacts_reported = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall"]
+shape = SubResource("BoxShape3D_la0rv")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Wall"]
+transform = Transform3D(1, -6.16032e-05, -3.16156e-05, 6.16032e-05, 1, 8.90955e-06, 3.16156e-05, -8.90955e-06, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_ljpd4")
+
+[connection signal="body_entered" from="Wall" to="Player/Player" method="_on_wall_body_entered"]
 
 [editable path="anima"]

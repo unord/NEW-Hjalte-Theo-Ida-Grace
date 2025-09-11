@@ -15,4 +15,13 @@ shape = SubResource("BoxShape3D_wd2d1")
 [node name="bibel" parent="." index="1" instance=ExtResource("2_wd2d1")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.249679, 0)
 
+[node name="OmniLight3D" type="OmniLight3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.367125, 0)
+light_color = Color(0.819608, 0.894118, 0.494118, 1)
+shadow_enabled = true
+shadow_blur = 2.313
+omni_range = 5.915
+omni_attenuation = 2.212
+omni_shadow_mode = 0
+
 [editable path="bibel"]

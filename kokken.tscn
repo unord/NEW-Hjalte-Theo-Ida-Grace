@@ -15,7 +15,7 @@ material = SubResource("StandardMaterial3D_qq5rs")
 size = Vector2(5, 25)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_i54pb"]
-size = Vector3(18.8951, 1, 17.5428)
+size = Vector3(7.53666, 1, 7.19259)
 
 [sub_resource type="Environment" id="Environment_kah3p"]
 background_mode = 2
@@ -40,15 +40,15 @@ material = SubResource("StandardMaterial3D_kah3p")
 [node name="kokken" type="Node3D"]
 
 [node name="floor" type="StaticBody3D" parent="."]
-transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 29.6268, 0, -2.89664)
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 32.6977, 0, -0.621848)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="floor"]
-transform = Transform3D(3.79302, 0, 0, 0, 1, 0, 0, 0, 0.686993, 0, 0, 1.48367)
+transform = Transform3D(1.47242, 0, 0, 0, 1, 0, 0, 0, 0.289946, 0.03, 0, 0)
 mesh = SubResource("PlaneMesh_c7oah")
 skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="floor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0154183, -0.460612, 1.3265)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.208485, -0.460612, -5.88894e-05)
 shape = SubResource("BoxShape3D_i54pb")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]

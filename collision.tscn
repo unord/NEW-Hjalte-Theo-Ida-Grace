@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://b3andlsposkc1"]
+[gd_scene load_steps=24 format=3 uid="uid://b3andlsposkc1"]
 
 [ext_resource type="Script" uid="uid://cm836a1gqeg5u" path="res://code.gd" id="1_m0q3j"]
 [ext_resource type="PackedScene" uid="uid://hpr0v012ghsb" path="res://addons/godot-xr-tools/hands/scenes/highpoly/left_tac_glove.tscn" id="2_3fq0p"]
@@ -10,10 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://8jwqcsjmke1c" path="res://cube.tscn" id="8_mgq83"]
 [ext_resource type="PackedScene" uid="uid://das8mt0d65p7r" path="res://anima.blend" id="10_cxk7p"]
 [ext_resource type="AudioStream" uid="uid://bs8b4li0cfg8m" path="res://Monday Chill.wav" id="10_la0rv"]
-
-[sub_resource type="Environment" id="Environment_1bey1"]
-background_mode = 2
-background_color = Color(0.133912, 0.239148, 0.316038, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mgq83"]
 albedo_color = Color(0.996379, 0.892274, 0.740514, 1)
@@ -41,19 +37,28 @@ material = SubResource("StandardMaterial3D_cxk7p")
 [sub_resource type="BoxShape3D" id="BoxShape3D_ljpd4"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_la0rv"]
-size = Vector3(5.36659, 1.01492, 1.09106)
+size = Vector3(2.82016, 1.2057, 1.09106)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_la0rv"]
+albedo_color = Color(1, 0.12, 0.12, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_cxk7p"]
+material = SubResource("StandardMaterial3D_la0rv")
+
+[sub_resource type="Environment" id="Environment_1bey1"]
+background_mode = 2
+background_color = Color(0.133912, 0.239148, 0.316038, 1)
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.190566, 0.289746, 0.281544, 1)
+fog_light_energy = 1.84
+fog_density = 1.0
+fog_depth_curve = 0.574349
+fog_depth_begin = 0.0
+fog_depth_end = 50.0
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_m0q3j")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.975365, 0.220595, 0, -0.220595, 0.975365, 0, 4.70302, 4.91987)
-shadow_enabled = true
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="DirectionalLight3D"]
-environment = SubResource("Environment_1bey1")
 
 [node name="floor" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.204772, -33.8584)
@@ -147,6 +152,7 @@ visible = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.221259, -44.3225)
 collision_layer = 4
 collision_mask = 5
+lock_rotation = true
 contact_monitor = true
 max_contacts_reported = 1
 
@@ -155,13 +161,34 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.131285, -0.0320972, 0.04553
 shape = SubResource("BoxShape3D_la0rv")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Wall"]
+transform = Transform3D(5.6376, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 visible = false
 mesh = SubResource("BoxMesh_cxk7p")
+
+[node name="Vinrum" type="RigidBody3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.05161, 0.221259, -9.17836)
+collision_layer = 4
+collision_mask = 5
+lock_rotation = true
+contact_monitor = true
+max_contacts_reported = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Vinrum"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.41985, 0.0632939, 0.0455317)
+shape = SubResource("BoxShape3D_la0rv")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Vinrum"]
+transform = Transform3D(3.10705, 0, 0, 0, 1, 0, 0, 0, 1, -1.34393, 0, -2.38419e-07)
+mesh = SubResource("BoxMesh_cxk7p")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_1bey1")
 
 [node name="background music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_la0rv")
 autoplay = true
 
 [connection signal="body_entered" from="Wall" to="Player/Player" method="_on_wall_body_entered"]
+[connection signal="body_entered" from="Vinrum" to="Player/Player" method="_on_vinrum_body_entered"]
 
 [editable path="anima"]

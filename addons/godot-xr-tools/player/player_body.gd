@@ -869,8 +869,14 @@ static func find_instance(node: Node) -> XRToolsPlayerBody:
 		"*",
 		"XRToolsPlayerBody") as XRToolsPlayerBody
 		
-func _on_wall_body_entered(body: Node):
+func _on_wall_body_entered(body: Node) -> void:
 	print("Kollision i scene 1 udenfor med: ", body.name)
 	if body.name == "Player":
 		print("Kollision i scene 1 indenfor med: ", body.name)
 		get_tree().change_scene_to_file("res://kokken.tscn")
+		
+func _on_vinrum_body_entered(body: Node):
+	print("Kollision til vinrum: ", body.name)
+	if body.name == "Player":
+		print("Kollision vinrum indenfor med: ", body.name)
+		get_tree().change_scene_to_file("res://vinrum.tscn")

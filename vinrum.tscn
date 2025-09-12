@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://dyeu74hcmh4as" path="res://bloodnew.gd" id="7_76myk"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ij55x"]
-size = Vector3(59.5933, 0.49707, 59.4453)
+size = Vector3(60.1575, 0.49707, 59.4453)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_cgbdk"]
 size = Vector2(20, 20)
@@ -40,6 +40,16 @@ albedo_color = Color(0.504232, 0.141976, 0.141679, 1)
 material = SubResource("StandardMaterial3D_s5cgr")
 size = Vector3(60, 1, 60)
 
+[sub_resource type="Animation" id="Animation_adn5r"]
+length = 0.001
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 23.2223, -1.67925, 0)
+
 [sub_resource type="Animation" id="Animation_61ffu"]
 resource_name = "bloodup"
 length = 10.0
@@ -50,16 +60,6 @@ tracks/0/path = NodePath("MeshInstance3D")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = PackedFloat32Array(0.2, 1, 23.2223, -1.67925, 0, 9.86667, 1, 23.2223, 0.81738, 0)
-
-[sub_resource type="Animation" id="Animation_adn5r"]
-length = 0.001
-tracks/0/type = "position_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance3D")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 23.2223, -1.67925, 0)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hrd88"]
 _data = {
@@ -73,7 +73,7 @@ _data = {
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.3722, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.287354, -0.251465, 0.295258)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00524902, -0.251465, 0.295258)
 shape = SubResource("BoxShape3D_ij55x")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
@@ -138,12 +138,11 @@ shape = SubResource("SphereShape3D_s5cgr")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="blood trigger2"]
 mesh = SubResource("SphereMesh_76myk")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." node_paths=PackedStringArray("anim")]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 2.2968, 0, 0, 0, 1, 23.2223, -1.67925, 0)
 mesh = SubResource("BoxMesh_ycll3")
 skeleton = NodePath("")
 script = ExtResource("7_76myk")
-anim = NodePath("AnimationPlayer")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MeshInstance3D"]
 root_node = NodePath("../..")

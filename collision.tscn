@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://b3andlsposkc1"]
+[gd_scene load_steps=27 format=3 uid="uid://b3andlsposkc1"]
 
 [ext_resource type="Script" uid="uid://cm836a1gqeg5u" path="res://code.gd" id="1_m0q3j"]
 [ext_resource type="PackedScene" uid="uid://hpr0v012ghsb" path="res://addons/godot-xr-tools/hands/scenes/highpoly/left_tac_glove.tscn" id="2_3fq0p"]
@@ -8,8 +8,11 @@
 [ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="4_ylkwj"]
 [ext_resource type="PackedScene" uid="uid://b6bk2pj8vbj28" path="res://addons/godot-xr-tools/functions/movement_turn.tscn" id="5_0cmjk"]
 [ext_resource type="PackedScene" uid="uid://8jwqcsjmke1c" path="res://cube.tscn" id="8_mgq83"]
+[ext_resource type="PackedScene" uid="uid://dui60f3f8brp1" path="res://lamp_godot.tscn" id="9_la0rv"]
 [ext_resource type="PackedScene" uid="uid://das8mt0d65p7r" path="res://anima.blend" id="10_cxk7p"]
 [ext_resource type="AudioStream" uid="uid://bs8b4li0cfg8m" path="res://Monday Chill.wav" id="10_la0rv"]
+[ext_resource type="Script" uid="uid://bhqx6uyjoe1rt" path="res://vinrum.gd" id="11_aheu0"]
+[ext_resource type="AudioStream" uid="uid://d25p3w5p3d7vj" path="res://door aaben 1.mp3" id="12_cvscd"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mgq83"]
 albedo_color = Color(0.996379, 0.892274, 0.740514, 1)
@@ -138,6 +141,9 @@ mesh = SubResource("BoxMesh_la0rv")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="table/StaticBody3D"]
 shape = SubResource("BoxShape3D_ljpd4")
 
+[node name="Lamp" parent="table" instance=ExtResource("9_la0rv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75465, 1.03345, 2.02881)
+
 [node name="anima" parent="." instance=ExtResource("10_cxk7p")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1.05257, -7.80123)
 visible = false
@@ -153,6 +159,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.221259, -44.3225)
 collision_layer = 4
 collision_mask = 5
 lock_rotation = true
+freeze = true
+freeze_mode = 1
 contact_monitor = true
 max_contacts_reported = 1
 
@@ -170,8 +178,11 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.051
 collision_layer = 4
 collision_mask = 5
 lock_rotation = true
+freeze = true
+freeze_mode = 1
 contact_monitor = true
 max_contacts_reported = 1
+script = ExtResource("11_aheu0")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Vinrum"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.41985, 0.0632939, 0.0455317)
@@ -180,6 +191,9 @@ shape = SubResource("BoxShape3D_la0rv")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Vinrum"]
 transform = Transform3D(3.10705, 0, 0, 0, 1, 0, 0, 0, 1, -1.34393, 0, -2.38419e-07)
 mesh = SubResource("BoxMesh_cxk7p")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Vinrum"]
+stream = ExtResource("12_cvscd")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_1bey1")
@@ -190,5 +204,6 @@ autoplay = true
 
 [connection signal="body_entered" from="Wall" to="Player/Player" method="_on_wall_body_entered"]
 [connection signal="body_entered" from="Vinrum" to="Player/Player" method="_on_vinrum_body_entered"]
+[connection signal="body_entered" from="Vinrum" to="Vinrum" method="_on_body_entered"]
 
 [editable path="anima"]

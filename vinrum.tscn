@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b4btni4d41qre"]
+[gd_scene load_steps=20 format=3 uid="uid://b4btni4d41qre"]
 
 [ext_resource type="PackedScene" uid="uid://hpr0v012ghsb" path="res://addons/godot-xr-tools/hands/scenes/highpoly/left_tac_glove.tscn" id="1_s5cgr"]
 [ext_resource type="PackedScene" uid="uid://b4ysuy43poobf" path="res://addons/godot-xr-tools/functions/function_pickup.tscn" id="2_76myk"]
@@ -6,11 +6,13 @@
 [ext_resource type="PackedScene" uid="uid://bl2nuu3qhlb5k" path="res://addons/godot-xr-tools/functions/movement_direct.tscn" id="4_61ffu"]
 [ext_resource type="PackedScene" uid="uid://b6bk2pj8vbj28" path="res://addons/godot-xr-tools/functions/movement_turn.tscn" id="5_adn5r"]
 [ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="6_hrd88"]
+[ext_resource type="Script" uid="uid://dyeu74hcmh4as" path="res://bloodnew.gd" id="7_76myk"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ij55x"]
-size = Vector3(6.0166, 0.49707, 5.98413)
+size = Vector3(59.5933, 0.49707, 59.4453)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_cgbdk"]
+size = Vector2(20, 20)
 
 [sub_resource type="Environment" id="Environment_8xwos"]
 background_mode = 1
@@ -18,12 +20,60 @@ background_color = Color(0.510284, 0.603269, 0.326414, 1)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_y8dyw"]
 
+[sub_resource type="GDScript" id="GDScript_76myk"]
+script/source = "extends RigidBody3D
+
+@onready var anim_player = $AnimationPlayer
+"
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_s5cgr"]
+radius = 1.98061
+
+[sub_resource type="SphereMesh" id="SphereMesh_76myk"]
+radius = 2.0
+height = 4.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s5cgr"]
+albedo_color = Color(0.504232, 0.141976, 0.141679, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ycll3"]
+material = SubResource("StandardMaterial3D_s5cgr")
+size = Vector3(60, 1, 60)
+
+[sub_resource type="Animation" id="Animation_61ffu"]
+resource_name = "bloodup"
+length = 10.0
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0.2, 1, 23.2223, -1.67925, 0, 9.86667, 1, 23.2223, 0.81738, 0)
+
+[sub_resource type="Animation" id="Animation_adn5r"]
+length = 0.001
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 23.2223, -1.67925, 0)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hrd88"]
+_data = {
+&"RESET": SubResource("Animation_adn5r"),
+&"bloodup": SubResource("Animation_61ffu")
+}
+
 [node name="Node3D" type="Node3D"]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.3722, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00537109, -0.251465, 0.0159912)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.287354, -0.251465, 0.295258)
 shape = SubResource("BoxShape3D_ij55x")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
@@ -70,3 +120,35 @@ collision_mask = 769
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player/Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.526939, 1.03602, 0)
 shape = SubResource("CapsuleShape3D_y8dyw")
+
+[node name="blood trigger2" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.80848, 2.237, 6.94712)
+collision_layer = 4
+collision_mask = 5
+lock_rotation = true
+freeze = true
+freeze_mode = 1
+contact_monitor = true
+max_contacts_reported = 1
+script = SubResource("GDScript_76myk")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="blood trigger2"]
+shape = SubResource("SphereShape3D_s5cgr")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="blood trigger2"]
+mesh = SubResource("SphereMesh_76myk")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." node_paths=PackedStringArray("anim")]
+transform = Transform3D(1, 0, 0, 0, 2.2968, 0, 0, 0, 1, 23.2223, -1.67925, 0)
+mesh = SubResource("BoxMesh_ycll3")
+skeleton = NodePath("")
+script = ExtResource("7_76myk")
+anim = NodePath("AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MeshInstance3D"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_hrd88")
+}
+
+[connection signal="body_entered" from="blood trigger2" to="MeshInstance3D" method="_on_blood_trigger_2_body_entered"]

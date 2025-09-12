@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://b3andlsposkc1"]
+[gd_scene load_steps=28 format=3 uid="uid://b3andlsposkc1"]
 
 [ext_resource type="Script" uid="uid://cm836a1gqeg5u" path="res://code.gd" id="1_m0q3j"]
 [ext_resource type="PackedScene" uid="uid://hpr0v012ghsb" path="res://addons/godot-xr-tools/hands/scenes/highpoly/left_tac_glove.tscn" id="2_3fq0p"]
@@ -11,8 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://dui60f3f8brp1" path="res://lamp_godot.tscn" id="9_la0rv"]
 [ext_resource type="PackedScene" uid="uid://das8mt0d65p7r" path="res://anima.blend" id="10_cxk7p"]
 [ext_resource type="AudioStream" uid="uid://bs8b4li0cfg8m" path="res://Monday Chill.wav" id="10_la0rv"]
-[ext_resource type="Script" uid="uid://bhqx6uyjoe1rt" path="res://vinrum.gd" id="11_aheu0"]
 [ext_resource type="AudioStream" uid="uid://d25p3w5p3d7vj" path="res://door aaben 1.mp3" id="12_cvscd"]
+[ext_resource type="Script" uid="uid://bjrem6rk026ej" path="res://audio_stream_player_3d.gd" id="13_cvscd"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mgq83"]
 albedo_color = Color(0.996379, 0.892274, 0.740514, 1)
@@ -47,6 +47,8 @@ albedo_color = Color(1, 0.12, 0.12, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_cxk7p"]
 material = SubResource("StandardMaterial3D_la0rv")
+
+[sub_resource type="GDScript" id="GDScript_aheu0"]
 
 [sub_resource type="Environment" id="Environment_1bey1"]
 background_mode = 2
@@ -182,7 +184,7 @@ freeze = true
 freeze_mode = 1
 contact_monitor = true
 max_contacts_reported = 1
-script = ExtResource("11_aheu0")
+script = SubResource("GDScript_aheu0")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Vinrum"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.41985, 0.0632939, 0.0455317)
@@ -194,6 +196,7 @@ mesh = SubResource("BoxMesh_cxk7p")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Vinrum"]
 stream = ExtResource("12_cvscd")
+script = ExtResource("13_cvscd")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_1bey1")
@@ -204,6 +207,5 @@ autoplay = true
 
 [connection signal="body_entered" from="Wall" to="Player/Player" method="_on_wall_body_entered"]
 [connection signal="body_entered" from="Vinrum" to="Player/Player" method="_on_vinrum_body_entered"]
-[connection signal="body_entered" from="Vinrum" to="Vinrum" method="_on_body_entered"]
 
 [editable path="anima"]

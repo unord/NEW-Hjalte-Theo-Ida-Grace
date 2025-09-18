@@ -1,6 +1,6 @@
 extends MeshInstance3D
 
-@export var anim: AnimationPlayer
+@onready var anim = $AnimationPlayer
 
 func _on_blood_trigger_2_body_entered(body: Node) -> void:
 	anim.play("bloodup")

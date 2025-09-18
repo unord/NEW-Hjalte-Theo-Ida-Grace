@@ -1,14 +1,15 @@
-[gd_scene load_steps=27 format=3 uid="uid://b4btni4d41qre"]
+[gd_scene load_steps=23 format=3 uid="uid://b4btni4d41qre"]
 
+[ext_resource type="Script" uid="uid://bucfc0xabu2rg" path="res://vinrum.gd" id="1_61ffu"]
 [ext_resource type="PackedScene" uid="uid://hpr0v012ghsb" path="res://addons/godot-xr-tools/hands/scenes/highpoly/left_tac_glove.tscn" id="1_s5cgr"]
 [ext_resource type="PackedScene" uid="uid://b4ysuy43poobf" path="res://addons/godot-xr-tools/functions/function_pickup.tscn" id="2_76myk"]
+[ext_resource type="Script" uid="uid://cdlyjxc31yit0" path="res://directional_light_3d.gd" id="2_adn5r"]
 [ext_resource type="PackedScene" uid="uid://dup2vp8v5rpi5" path="res://addons/godot-xr-tools/hands/scenes/highpoly/right_tac_glove.tscn" id="3_ycll3"]
 [ext_resource type="PackedScene" uid="uid://bl2nuu3qhlb5k" path="res://addons/godot-xr-tools/functions/movement_direct.tscn" id="4_61ffu"]
 [ext_resource type="PackedScene" uid="uid://b6bk2pj8vbj28" path="res://addons/godot-xr-tools/functions/movement_turn.tscn" id="5_adn5r"]
 [ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="6_hrd88"]
 [ext_resource type="Script" uid="uid://dyeu74hcmh4as" path="res://bloodnew.gd" id="7_76myk"]
 [ext_resource type="AudioStream" uid="uid://d25p3w5p3d7vj" path="res://door aaben 1.mp3" id="8_ycll3"]
-[ext_resource type="Script" uid="uid://ck4pdoffr1est" path="res://fade in.gd" id="9_61ffu"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ij55x"]
 size = Vector3(60.1575, 0.49707, 59.4453)
@@ -24,8 +25,6 @@ background_color = Color(0.510284, 0.603269, 0.326414, 1)
 
 [sub_resource type="GDScript" id="GDScript_76myk"]
 script/source = "extends RigidBody3D
-
-@onready var anim_player = $AnimationPlayer
 "
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_s5cgr"]
@@ -48,7 +47,7 @@ length = 10.0
 tracks/0/type = "position_3d"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance3D")
+tracks/0/path = NodePath("blood lol")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = PackedFloat32Array(0, 1, 23.2223, -1.67925, 0, 9.93333, 1, 23.2223, 1.07992, 0)
@@ -62,40 +61,8 @@ _data = {
 script/source = "extends AnimationPlayer
 "
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_adn5r"]
-albedo_color = Color(0, 0, 0, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_hrd88"]
-material = SubResource("StandardMaterial3D_adn5r")
-size = Vector3(50, 50, 50)
-
-[sub_resource type="Animation" id="Animation_y8dyw"]
-length = 0.001
-tracks/0/type = "blend_shape"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:transparency")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0)
-
-[sub_resource type="Animation" id="Animation_8xwos"]
-resource_name = "fade in"
-tracks/0/type = "blend_shape"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:transparency")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 1, 1, 0)
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_35b7e"]
-_data = {
-&"RESET": SubResource("Animation_y8dyw"),
-&"fade in": SubResource("Animation_8xwos")
-}
-
 [node name="Node3D" type="Node3D"]
+script = ExtResource("1_61ffu")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.3722, 0, 0)
@@ -110,6 +77,7 @@ mesh = SubResource("PlaneMesh_cgbdk")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 2.70723, 0)
+script = ExtResource("2_adn5r")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="DirectionalLight3D"]
 environment = SubResource("Environment_8xwos")
@@ -166,14 +134,13 @@ shape = SubResource("SphereShape3D_s5cgr")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="blood trigger2"]
 mesh = SubResource("SphereMesh_76myk")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." node_paths=PackedStringArray("anim")]
+[node name="blood lol" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 2.2968, 0, 0, 0, 1, 23.2223, -1.67925, 0)
 mesh = SubResource("BoxMesh_ycll3")
 skeleton = NodePath("")
 script = ExtResource("7_76myk")
-anim = NodePath("AnimationPlayer")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="MeshInstance3D"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="blood lol"]
 root_node = NodePath("../..")
 libraries = {
 &"": SubResource("AnimationLibrary_hrd88")
@@ -184,13 +151,5 @@ script = SubResource("GDScript_ycll3")
 stream = ExtResource("8_ycll3")
 autoplay = true
 
-[node name="fade in" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_hrd88")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="fade in"]
-libraries = {
-&"": SubResource("AnimationLibrary_35b7e")
-}
-script = ExtResource("9_61ffu")
-
-[connection signal="body_entered" from="blood trigger2" to="MeshInstance3D" method="_on_blood_trigger_2_body_entered"]
+[connection signal="child_entered_tree" from="." to="Player/Player" method="_on_node_3d_child_entered_tree"]
+[connection signal="body_entered" from="blood trigger2" to="blood lol" method="_on_blood_trigger_2_body_entered"]

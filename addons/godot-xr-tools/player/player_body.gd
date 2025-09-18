@@ -883,3 +883,4 @@ func _on_vinrum_body_entered(body: Node):
 	if body.name == "Player":
 		print("Kollision vinrum indenfor med: ", body.name)
 		get_tree().change_scene_to_file("res://vinrum.tscn")
+	

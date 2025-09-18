@@ -69,16 +69,6 @@ albedo_color = Color(0, 0, 0, 1)
 material = SubResource("StandardMaterial3D_adn5r")
 size = Vector3(50, 50, 50)
 
-[sub_resource type="Animation" id="Animation_8xwos"]
-resource_name = "fade in"
-tracks/0/type = "blend_shape"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:transparency")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 1, 1, 0)
-
 [sub_resource type="Animation" id="Animation_y8dyw"]
 length = 0.001
 tracks/0/type = "blend_shape"
@@ -88,6 +78,16 @@ tracks/0/path = NodePath(".:transparency")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = PackedFloat32Array(0, 1, 0)
+
+[sub_resource type="Animation" id="Animation_8xwos"]
+resource_name = "fade in"
+tracks/0/type = "blend_shape"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:transparency")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 1, 1, 0)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_35b7e"]
 _data = {

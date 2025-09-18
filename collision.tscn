@@ -203,6 +203,7 @@ environment = SubResource("Environment_1bey1")
 
 [node name="background music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_la0rv")
+volume_db = -39.83
 autoplay = true
 
 [connection signal="body_entered" from="Wall" to="Player/Player" method="_on_wall_body_entered"]

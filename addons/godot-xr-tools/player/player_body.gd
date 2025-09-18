@@ -719,12 +719,15 @@ func _apply_velocity_and_control(delta: float):
 				dir_forward * -ground_control_velocity.y +
 				dir_right * ground_control_velocity.x
 		) * XRServer.world_scale
+		
+
 
 		# Apply control velocity to horizontal velocity based on traction
 		var current_traction := XRToolsGroundPhysicsSettings.get_move_traction(
 				ground_physics, default_physics)
 		var traction_factor: float = clamp(current_traction * delta, 0.0, 1.0)
 		horizontal_velocity = horizontal_velocity.lerp(control_velocity, traction_factor)
+
 
 	# Prevent the player from moving up steep slopes
 	if on_ground:

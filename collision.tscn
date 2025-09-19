@@ -1,7 +1,8 @@
-[gd_scene load_steps=28 format=3 uid="uid://b3andlsposkc1"]
+[gd_scene load_steps=29 format=3 uid="uid://b3andlsposkc1"]
 
 [ext_resource type="Script" uid="uid://cm836a1gqeg5u" path="res://code.gd" id="1_m0q3j"]
 [ext_resource type="PackedScene" uid="uid://hpr0v012ghsb" path="res://addons/godot-xr-tools/hands/scenes/highpoly/left_tac_glove.tscn" id="2_3fq0p"]
+[ext_resource type="PackedScene" uid="uid://lfpv1yk5v18u" path="res://faerdig gang.glb" id="2_cvscd"]
 [ext_resource type="PackedScene" uid="uid://b4ysuy43poobf" path="res://addons/godot-xr-tools/functions/function_pickup.tscn" id="3_0tpuo"]
 [ext_resource type="PackedScene" uid="uid://dup2vp8v5rpi5" path="res://addons/godot-xr-tools/hands/scenes/highpoly/right_tac_glove.tscn" id="3_ylkwj"]
 [ext_resource type="PackedScene" uid="uid://bl2nuu3qhlb5k" path="res://addons/godot-xr-tools/functions/movement_direct.tscn" id="4_f0uo7"]
@@ -9,7 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://b6bk2pj8vbj28" path="res://addons/godot-xr-tools/functions/movement_turn.tscn" id="5_0cmjk"]
 [ext_resource type="PackedScene" uid="uid://8jwqcsjmke1c" path="res://cube.tscn" id="8_mgq83"]
 [ext_resource type="PackedScene" uid="uid://dui60f3f8brp1" path="res://lamp_godot.tscn" id="9_la0rv"]
-[ext_resource type="PackedScene" uid="uid://das8mt0d65p7r" path="res://anima.blend" id="10_cxk7p"]
 [ext_resource type="AudioStream" uid="uid://bs8b4li0cfg8m" path="res://Monday Chill.wav" id="10_la0rv"]
 [ext_resource type="AudioStream" uid="uid://d25p3w5p3d7vj" path="res://door aaben 1.mp3" id="12_cvscd"]
 [ext_resource type="Script" uid="uid://bjrem6rk026ej" path="res://audio_stream_player_3d.gd" id="13_cvscd"]
@@ -21,13 +21,16 @@ albedo_color = Color(0.996379, 0.892274, 0.740514, 1)
 material = SubResource("StandardMaterial3D_mgq83")
 size = Vector2(5, 50)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_m0q3j"]
-size = Vector3(5.00897, 1, 49.5262)
-
 [sub_resource type="BoxMesh" id="BoxMesh_f0uo7"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_m0q3j"]
+size = Vector3(5.00897, 1, 56.2587)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_0cmjk"]
-size = Vector3(1, 1, 2.02405)
+size = Vector3(0.988403, 1, 2.70841)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_aheu0"]
+size = Vector3(8.47876, 15.5015, 1)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mgq83"]
 
@@ -65,36 +68,49 @@ fog_depth_end = 50.0
 [node name="Main" type="Node3D"]
 script = ExtResource("1_m0q3j")
 
-[node name="floor" type="StaticBody3D" parent="."]
+[node name="floor + walls" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.204772, -33.8584)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="floor"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="floor + walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12.2174)
+visible = false
 mesh = SubResource("PlaneMesh_1bey1")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="floor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0297251, -0.460612, 12.4643)
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="floor + walls"]
+transform = Transform3D(1, 0, 0, 0, 5, 0, 0, 0, 49.9778, 3.02, 2.38064, 12.3944)
+visible = false
+mesh = SubResource("BoxMesh_f0uo7")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="floor + walls"]
+transform = Transform3D(1, 0, 0, 0, 5, 0, 0, 0, 49.9778, -2.93903, 2.38064, 12.3944)
+visible = false
+mesh = SubResource("BoxMesh_f0uo7")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="floor + walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0297251, -0.538255, 9.09805)
 shape = SubResource("BoxShape3D_m0q3j")
 
-[node name="walls" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.204772, -33.8584)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="walls"]
-transform = Transform3D(1, 0, 0, 0, 5, 0, 0, 0, 49.9778, 3.02, 2.38064, 12.3944)
-mesh = SubResource("BoxMesh_f0uo7")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="walls"]
-transform = Transform3D(1, 0, 0, 0, 5, 0, 0, 0, 49.9778, -2.93903, 2.38064, 12.3944)
-mesh = SubResource("BoxMesh_f0uo7")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="walls"]
-transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, -14.9694, 0, 13.2019)
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="floor + walls"]
+transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, -15.1265, 0, 9.39828)
 shape = SubResource("BoxShape3D_0cmjk")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="walls"]
-transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, 15.0786, 0, 12.0926)
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="floor + walls"]
+transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, 15.1961, 0, 9.73071)
 shape = SubResource("BoxShape3D_0cmjk")
+
+[node name="faerdig gang" parent="floor + walls" instance=ExtResource("2_cvscd")]
+transform = Transform3D(-1.31134e-07, 0, 3, 0, 3, 0, -3, 0, -1.31134e-07, -2.50031, -0.473853, 7.91156)
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="floor + walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.478771, 5.43905, -19.567)
+shape = SubResource("BoxShape3D_aheu0")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="floor + walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.957542, 4.48781, 36.1065)
+shape = SubResource("BoxShape3D_aheu0")
 
 [node name="Player" type="XROrigin3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -0.143033, 0)
@@ -146,16 +162,6 @@ shape = SubResource("BoxShape3D_ljpd4")
 [node name="Lamp" parent="table" instance=ExtResource("9_la0rv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75465, 1.03345, 2.02881)
 
-[node name="anima" parent="." instance=ExtResource("10_cxk7p")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1.05257, -7.80123)
-visible = false
-
-[node name="Light" parent="anima" index="0"]
-visible = false
-
-[node name="Camera" parent="anima" index="1"]
-visible = false
-
 [node name="Wall" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.221259, -44.3225)
 collision_layer = 4
@@ -172,7 +178,6 @@ shape = SubResource("BoxShape3D_la0rv")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Wall"]
 transform = Transform3D(5.6376, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-visible = false
 mesh = SubResource("BoxMesh_cxk7p")
 
 [node name="Vinrum" type="RigidBody3D" parent="."]
@@ -208,5 +213,3 @@ autoplay = true
 
 [connection signal="body_entered" from="Wall" to="Player/Player" method="_on_wall_body_entered"]
 [connection signal="body_entered" from="Vinrum" to="Player/Player" method="_on_vinrum_body_entered"]
-
-[editable path="anima"]

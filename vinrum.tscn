@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://b4btni4d41qre"]
+[gd_scene load_steps=29 format=3 uid="uid://b4btni4d41qre"]
 
 [ext_resource type="Script" uid="uid://bucfc0xabu2rg" path="res://vinrum.gd" id="1_61ffu"]
 [ext_resource type="PackedScene" uid="uid://hpr0v012ghsb" path="res://addons/godot-xr-tools/hands/scenes/highpoly/left_tac_glove.tscn" id="1_s5cgr"]
@@ -10,12 +10,27 @@
 [ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="6_hrd88"]
 [ext_resource type="Script" uid="uid://dyeu74hcmh4as" path="res://bloodnew.gd" id="7_76myk"]
 [ext_resource type="AudioStream" uid="uid://d25p3w5p3d7vj" path="res://door aaben 1.mp3" id="8_ycll3"]
+[ext_resource type="PackedScene" uid="uid://dot6gwmhhjf1d" path="res://kælderen med vin.glb" id="11_hrd88"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ij55x"]
-size = Vector3(60.1575, 0.49707, 59.4453)
+size = Vector3(28.1697, 0.49707, 27.5725)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_cgbdk"]
-size = Vector2(20, 20)
+[sub_resource type="BoxShape3D" id="BoxShape3D_hrd88"]
+size = Vector3(0.363159, 7.19116, 21.5332)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8xwos"]
+size = Vector3(0.343323, 6.47809, 11.5847)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_y8dyw"]
+size = Vector3(0.286133, 6.86688, 8.48187)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_35b7e"]
+size = Vector3(6.88501, 7.54938, 0.283325)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2b5ra"]
+size = Vector3(12.399, 6.99713, 0.160645)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2wf7y"]
 
 [sub_resource type="Environment" id="Environment_8xwos"]
 background_mode = 1
@@ -68,12 +83,35 @@ script = ExtResource("1_61ffu")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.3722, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00524902, -0.251465, 0.295258)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.3909, -0.251465, -1.76199)
 shape = SubResource("BoxShape3D_ij55x")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
-mesh = SubResource("PlaneMesh_cgbdk")
+[node name="kælderen med vin" parent="StaticBody3D" instance=ExtResource("11_hrd88")]
+transform = Transform3D(-3, 0, -2.62268e-07, 0, 3, 0, 2.62268e-07, 0, -3, -19.0875, 0, -3.43504)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.4656, 3.63025, 0.886719)
+shape = SubResource("BoxShape3D_hrd88")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.527, 3.30501, -3.76827)
+shape = SubResource("BoxShape3D_8xwos")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.4523, 3.26614, 7.33316)
+shape = SubResource("BoxShape3D_y8dyw")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.6784, 3.53403, 11.7827)
+shape = SubResource("BoxShape3D_35b7e")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.2817, 3.38144, -9.77972)
+shape = SubResource("BoxShape3D_2b5ra")
+
+[node name="CollisionShape3D7" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.1541, 0, 0)
+shape = SubResource("BoxShape3D_2wf7y")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 2.70723, 0)
@@ -118,14 +156,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.526939, 1.03602, 0)
 shape = SubResource("CapsuleShape3D_y8dyw")
 
 [node name="blood trigger2" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.80848, 2.237, 6.94712)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.25771, 2.237, 6.94712)
 collision_layer = 4
 collision_mask = 5
 lock_rotation = true
 freeze = true
 freeze_mode = 1
 contact_monitor = true
-max_contacts_reported = 1
+max_contacts_reported = 2
 script = SubResource("GDScript_76myk")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="blood trigger2"]

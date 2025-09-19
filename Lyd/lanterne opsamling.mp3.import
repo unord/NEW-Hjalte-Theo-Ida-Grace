@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://d2abq4xecdf1"
+path="res://.godot/imported/lanterne opsamling.mp3-82ebb7edf26911dd874846738906765a.mp3str"
+
+[deps]
+
+source_file="res://Lyd/lanterne opsamling.mp3"
+dest_files=["res://.godot/imported/lanterne opsamling.mp3-82ebb7edf26911dd874846738906765a.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dtpkq54ut202x"
+path="res://.godot/imported/helige toner.mp3-2bb8195665907f88de6bb6f50b3359f1.mp3str"
+
+[deps]
+
+source_file="res://Lyd/helige toner.mp3"
+dest_files=["res://.godot/imported/helige toner.mp3-2bb8195665907f88de6bb6f50b3359f1.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

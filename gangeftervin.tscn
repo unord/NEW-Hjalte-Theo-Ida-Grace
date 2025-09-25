@@ -1,0 +1,173 @@
+[gd_scene load_steps=24 format=3 uid="uid://bwhbusq8ny1o5"]
+
+[ext_resource type="PackedScene" uid="uid://lfpv1yk5v18u" path="res://faerdig gang.glb" id="1_8vni2"]
+[ext_resource type="PackedScene" uid="uid://hpr0v012ghsb" path="res://addons/godot-xr-tools/hands/scenes/highpoly/left_tac_glove.tscn" id="2_nga6m"]
+[ext_resource type="PackedScene" uid="uid://b4ysuy43poobf" path="res://addons/godot-xr-tools/functions/function_pickup.tscn" id="3_n48y4"]
+[ext_resource type="PackedScene" uid="uid://dup2vp8v5rpi5" path="res://addons/godot-xr-tools/hands/scenes/highpoly/right_tac_glove.tscn" id="4_argtc"]
+[ext_resource type="PackedScene" uid="uid://bl2nuu3qhlb5k" path="res://addons/godot-xr-tools/functions/movement_direct.tscn" id="5_ddedd"]
+[ext_resource type="PackedScene" uid="uid://b6bk2pj8vbj28" path="res://addons/godot-xr-tools/functions/movement_turn.tscn" id="6_1vn0s"]
+[ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="7_ek42u"]
+[ext_resource type="AudioStream" uid="uid://d25p3w5p3d7vj" path="res://door aaben 1.mp3" id="8_pjfio"]
+[ext_resource type="Script" uid="uid://bjrem6rk026ej" path="res://audio_stream_player_3d.gd" id="9_4k61c"]
+[ext_resource type="AudioStream" uid="uid://bs8b4li0cfg8m" path="res://Monday Chill.wav" id="10_ntl3x"]
+[ext_resource type="PackedScene" uid="uid://dui60f3f8brp1" path="res://lamp_godot.tscn" id="11_nga6m"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mgq83"]
+albedo_color = Color(0.996379, 0.892274, 0.740514, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_lubbl"]
+material = SubResource("StandardMaterial3D_mgq83")
+size = Vector2(5, 50)
+
+[sub_resource type="BoxMesh" id="BoxMesh_x8oy4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_y8nni"]
+size = Vector3(5.00897, 1, 56.2587)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_77t37"]
+size = Vector3(0.988403, 1, 2.70841)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w6fqb"]
+size = Vector3(8.47876, 15.5015, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2cdgh"]
+
+[sub_resource type="GDScript" id="GDScript_br55q"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_n512d"]
+size = Vector3(2.82016, 1.2057, 1.09106)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_la0rv"]
+albedo_color = Color(1, 0.12, 0.12, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_f1exr"]
+material = SubResource("StandardMaterial3D_la0rv")
+
+[sub_resource type="Environment" id="Environment_aleoo"]
+background_mode = 2
+background_color = Color(0.133912, 0.239148, 0.316038, 1)
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.190566, 0.289746, 0.281544, 1)
+fog_light_energy = 1.84
+fog_density = 1.0
+fog_depth_curve = 0.574349
+fog_depth_begin = 0.0
+fog_depth_end = 50.0
+
+[node name="Node3D" type="Node3D"]
+
+[node name="floor + walls" type="StaticBody3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.204772, -14.5005)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="floor + walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12.2174)
+visible = false
+mesh = SubResource("PlaneMesh_lubbl")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="floor + walls"]
+transform = Transform3D(1, 0, 0, 0, 5, 0, 0, 0, 49.9778, 3.02, 2.38064, 12.3944)
+visible = false
+mesh = SubResource("BoxMesh_x8oy4")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="floor + walls"]
+transform = Transform3D(1, 0, 0, 0, 5, 0, 0, 0, 49.9778, -2.93903, 2.38064, 12.3944)
+visible = false
+mesh = SubResource("BoxMesh_x8oy4")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="floor + walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0297251, -0.538255, 9.09805)
+shape = SubResource("BoxShape3D_y8nni")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="floor + walls"]
+transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, -15.1265, 0, 9.39828)
+shape = SubResource("BoxShape3D_77t37")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="floor + walls"]
+transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, 15.1961, 0, 9.73071)
+shape = SubResource("BoxShape3D_77t37")
+
+[node name="faerdig gang" parent="floor + walls" instance=ExtResource("1_8vni2")]
+transform = Transform3D(-1.31134e-07, 0, 3, 0, 3, 0, -3, 0, -1.31134e-07, -2.50031, -0.473853, 7.91156)
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="floor + walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.478771, 5.43905, -19.567)
+shape = SubResource("BoxShape3D_w6fqb")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="floor + walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.957542, 4.48781, 36.1065)
+shape = SubResource("BoxShape3D_w6fqb")
+
+[node name="Player" type="XROrigin3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -0.143033, 0)
+
+[node name="XRCamera3D" type="XRCamera3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
+
+[node name="lefty" type="XRController3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1, -0.5)
+tracker = &"left_hand"
+
+[node name="LeftHand" parent="Player/lefty" instance=ExtResource("2_nga6m")]
+
+[node name="FunctionPickup" parent="Player/lefty" instance=ExtResource("3_n48y4")]
+
+[node name="righty" type="XRController3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1, -0.5)
+tracker = &"right_hand"
+
+[node name="RightHand" parent="Player/righty" instance=ExtResource("4_argtc")]
+
+[node name="MovementDirect" parent="Player/righty" instance=ExtResource("5_ddedd")]
+
+[node name="MovementTurn" parent="Player/righty" instance=ExtResource("6_1vn0s")]
+turn_mode = 0
+
+[node name="FunctionPickup" parent="Player/righty" instance=ExtResource("3_n48y4")]
+
+[node name="Player" parent="Player" instance=ExtResource("7_ek42u")]
+collision_layer = 524294
+collision_mask = 769
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player/Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.526939, 1.03602, 0)
+shape = SubResource("CapsuleShape3D_2cdgh")
+
+[node name="Bibelrum" type="RigidBody3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.05161, 0.221259, -27.7135)
+collision_layer = 4
+collision_mask = 5
+lock_rotation = true
+freeze = true
+freeze_mode = 1
+contact_monitor = true
+max_contacts_reported = 1
+script = SubResource("GDScript_br55q")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Bibelrum"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.41985, 0.0632939, 0.0455317)
+shape = SubResource("BoxShape3D_n512d")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Bibelrum"]
+transform = Transform3D(3.10705, 0, 0, 0, 1, 0, 0, 0, 1, -1.34393, 0, -2.38419e-07)
+mesh = SubResource("BoxMesh_f1exr")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Bibelrum"]
+stream = ExtResource("8_pjfio")
+script = ExtResource("9_4k61c")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_aleoo")
+
+[node name="background music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_ntl3x")
+volume_db = -39.83
+autoplay = true
+
+[node name="Lamp" parent="." instance=ExtResource("11_nga6m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75465, 1.03345, 2.02881)
+
+[connection signal="body_entered" from="Bibelrum" to="Player/Player" method="_on_bibelrum_body_entered"]

@@ -883,4 +883,17 @@ func _on_vinrum_body_entered(body: Node):
 	if body.name == "Player":
 		print("Kollision vinrum indenfor med: ", body.name)
 		get_tree().change_scene_to_file("res://vinrum.tscn")
-	
+
+
+func _on_back_2_gang_body_entered(body: Node) -> void:
+	print("backinblack: ", body.name)
+	if body.name == "Player":
+		print("Kollision player with backtogang: ", body.name)
+		get_tree().change_scene_to_file("res://gangeftervin.tscn")
+
+
+func _on_bibelrum_body_entered(body: Node) -> void:
+	print("tothebibel: ", body.name)
+	if body.name == "Player":
+		print("Big ost to: ", body.name)
+		get_tree().change_scene_to_file("res://osterum.tscn")

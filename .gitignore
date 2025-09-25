@@ -1,6 +1,12 @@
 # Godot 4+ specific ignores
 .godot/
 /android/
+<<<<<<< Updated upstream
 faerdig gang.glb
 kaelderen med vin.glb
+=======
+>>>>>>> Stashed changes
 kælderen med vin.glb
+faerdig gang.glb
+faerdig gang.glb
+faerdig gang.glb

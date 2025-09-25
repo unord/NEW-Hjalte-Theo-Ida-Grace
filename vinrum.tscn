@@ -86,14 +86,13 @@ size = Vector3(0.414246, 1, 2.77637)
 
 [sub_resource type="Animation" id="Animation_y8dyw"]
 resource_name = "back2ganganim"
-length = 0.1
 tracks/0/type = "position_3d"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, -1.85924, -0.77681, -15.7869, 0.1, 1, -1.85924, 0.558687, -15.7869)
+tracks/0/keys = PackedFloat32Array(0.0333333, 1, -1.85924, -0.77681, -15.7869, 0.866667, 1, -1.85924, 0.558687, -15.7869)
 
 [sub_resource type="Animation" id="Animation_35b7e"]
 length = 0.001
@@ -112,7 +111,6 @@ _data = {
 }
 
 [node name="Node3D" type="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.85924, -0.77681, -15.7869)
 script = ExtResource("1_61ffu")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
@@ -244,7 +242,7 @@ mesh = SubResource("BoxMesh_hrd88")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.292877, 0, 0.0112305)
 shape = SubResource("BoxShape3D_ef5gr")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="back2gang"]
+[node name="animationalso" type="AnimationPlayer" parent="back2gang"]
 libraries = {
 &"": SubResource("AnimationLibrary_2b5ra")
 }

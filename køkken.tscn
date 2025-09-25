@@ -1,0 +1,104 @@
+[gd_scene load_steps=14 format=3 uid="uid://cgoainrhup0il"]
+
+[ext_resource type="PackedScene" uid="uid://hpr0v012ghsb" path="res://addons/godot-xr-tools/hands/scenes/highpoly/left_tac_glove.tscn" id="1_155sc"]
+[ext_resource type="PackedScene" uid="uid://b4ysuy43poobf" path="res://addons/godot-xr-tools/functions/function_pickup.tscn" id="2_jrx8j"]
+[ext_resource type="PackedScene" uid="uid://dup2vp8v5rpi5" path="res://addons/godot-xr-tools/hands/scenes/highpoly/right_tac_glove.tscn" id="3_7pdeu"]
+[ext_resource type="PackedScene" uid="uid://bl2nuu3qhlb5k" path="res://addons/godot-xr-tools/functions/movement_direct.tscn" id="4_642oc"]
+[ext_resource type="PackedScene" uid="uid://b6bk2pj8vbj28" path="res://addons/godot-xr-tools/functions/movement_turn.tscn" id="5_7c6l0"]
+[ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="6_vt7ew"]
+[ext_resource type="PackedScene" uid="uid://t3oi5ttrjbfy" path="res://Kors i røven.blend" id="9_qmvbn"]
+[ext_resource type="AudioStream" uid="uid://bs8b4li0cfg8m" path="res://Monday Chill.wav" id="11_44318"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qwo6o"]
+size = Vector3(59.4583, 1, 71.7788)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gadnc"]
+size = Vector3(0.988403, 1.34167, 3.10237)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kyaxf"]
+size = Vector3(66.7715, 28.0934, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_p4o3e"]
+
+[sub_resource type="Environment" id="Environment_gwusw"]
+background_mode = 2
+background_color = Color(0.133912, 0.239148, 0.316038, 1)
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.190566, 0.289746, 0.281544, 1)
+fog_light_energy = 1.84
+fog_density = 1.0
+fog_depth_curve = 0.574349
+fog_depth_begin = 0.0
+fog_depth_end = 50.0
+
+[node name="Node3D" type="Node3D"]
+
+[node name="floor + walls" type="StaticBody3D" parent="."]
+transform = Transform3D(-0.2, 0, -3.01992e-08, 0, 0.2, 0, 3.01992e-08, 0, -0.2, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="floor + walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.0467, 0.124453, 15.445)
+shape = SubResource("BoxShape3D_qwo6o")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="floor + walls"]
+transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, -44.1703, 4.27094, 14.3228)
+shape = SubResource("BoxShape3D_gadnc")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="floor + walls"]
+transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, 31.9643, 0, 9.73071)
+shape = SubResource("BoxShape3D_gadnc")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="floor + walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.01586, 11.735, -12.5259)
+shape = SubResource("BoxShape3D_kyaxf")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="floor + walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.04193, 4.48781, 43.4039)
+shape = SubResource("BoxShape3D_kyaxf")
+
+[node name="Player" type="XROrigin3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -0.143033, 0)
+
+[node name="XRCamera3D" type="XRCamera3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
+
+[node name="lefty" type="XRController3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1, -0.5)
+tracker = &"left_hand"
+
+[node name="LeftHand" parent="Player/lefty" instance=ExtResource("1_155sc")]
+
+[node name="FunctionPickup" parent="Player/lefty" instance=ExtResource("2_jrx8j")]
+
+[node name="righty" type="XRController3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1, -0.5)
+tracker = &"right_hand"
+
+[node name="RightHand" parent="Player/righty" instance=ExtResource("3_7pdeu")]
+
+[node name="MovementDirect" parent="Player/righty" instance=ExtResource("4_642oc")]
+
+[node name="MovementTurn" parent="Player/righty" instance=ExtResource("5_7c6l0")]
+turn_mode = 0
+
+[node name="FunctionPickup" parent="Player/righty" instance=ExtResource("2_jrx8j")]
+
+[node name="Player" parent="Player" instance=ExtResource("6_vt7ew")]
+collision_layer = 524294
+collision_mask = 769
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player/Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.526939, 1.03602, 0)
+shape = SubResource("CapsuleShape3D_p4o3e")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_gwusw")
+
+[node name="background music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_44318")
+volume_db = -39.83
+autoplay = true
+
+[node name="Kors i røven" parent="." instance=ExtResource("9_qmvbn")]
+transform = Transform3D(8.94366e-10, -1.31134e-08, 0.075, 0, 0.075, 1.31134e-08, -0.075, -1.56376e-16, 8.94366e-10, -0.671955, 0.904144, -0.655187)

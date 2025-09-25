@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bdix771emh045"]
+
+[ext_resource type="PackedScene" uid="uid://dq80bndpvwn4n" path="res://Ovenen_21088_autosave.glb" id="1_s60bx"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_r3qpj"]
+
+[node name="Ovenen_21088_autosave" instance=ExtResource("1_s60bx")]
+
+[node name="AnimationPlayer" parent="." index="18"]
+process_mode = 3
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="19"]
+root_node = NodePath("../AnimationPlayer")
+tree_root = SubResource("AnimationNodeStateMachine_r3qpj")
+advance_expression_base_node = NodePath("../AnimationPlayer")

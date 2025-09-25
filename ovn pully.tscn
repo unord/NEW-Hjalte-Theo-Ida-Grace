@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cffxyv7ddl82l"]
+
+[ext_resource type="PackedScene" uid="uid://dq80bndpvwn4n" path="res://Ovenen_21088_autosave.glb" id="1_dijb8"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Ovenen_21088_autosave" parent="." instance=ExtResource("1_dijb8")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 1.83323, 0, -4.17521)

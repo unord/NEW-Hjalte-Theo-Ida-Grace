@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cgoainrhup0il"]
+[gd_scene load_steps=15 format=3 uid="uid://cgoainrhup0il"]
 
 [ext_resource type="PackedScene" uid="uid://hpr0v012ghsb" path="res://addons/godot-xr-tools/hands/scenes/highpoly/left_tac_glove.tscn" id="1_155sc"]
 [ext_resource type="PackedScene" uid="uid://b4ysuy43poobf" path="res://addons/godot-xr-tools/functions/function_pickup.tscn" id="2_jrx8j"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bl2nuu3qhlb5k" path="res://addons/godot-xr-tools/functions/movement_direct.tscn" id="4_642oc"]
 [ext_resource type="PackedScene" uid="uid://b6bk2pj8vbj28" path="res://addons/godot-xr-tools/functions/movement_turn.tscn" id="5_7c6l0"]
 [ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="6_vt7ew"]
+[ext_resource type="PackedScene" uid="uid://dq80bndpvwn4n" path="res://Ovenen_21088_autosave.glb" id="9_48ikq"]
 [ext_resource type="PackedScene" uid="uid://t3oi5ttrjbfy" path="res://Kors i røven.blend" id="9_qmvbn"]
 [ext_resource type="AudioStream" uid="uid://bs8b4li0cfg8m" path="res://Monday Chill.wav" id="11_44318"]
 
@@ -59,6 +60,7 @@ shape = SubResource("BoxShape3D_kyaxf")
 
 [node name="Player" type="XROrigin3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -0.143033, 0)
+visible = false
 
 [node name="XRCamera3D" type="XRCamera3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
@@ -102,3 +104,6 @@ autoplay = true
 
 [node name="Kors i røven" parent="." instance=ExtResource("9_qmvbn")]
 transform = Transform3D(8.94366e-10, -1.31134e-08, 0.075, 0, 0.075, 1.31134e-08, -0.075, -1.56376e-16, 8.94366e-10, -0.671955, 0.904144, -0.655187)
+
+[node name="Ovenen_21088_autosave" parent="." instance=ExtResource("9_48ikq")]
+transform = Transform3D(0.03, 0, 0, 0, 0.03, 0, 0, 0, 0.03, -0.442392, 1.77078, 1.17104)

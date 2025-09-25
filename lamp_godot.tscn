@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://dui60f3f8brp1"]
+
+[ext_resource type="PackedScene" uid="uid://c8l60rnugru40" path="res://addons/godot-xr-tools/objects/pickable.tscn" id="1_erd5m"]
+[ext_resource type="PackedScene" uid="uid://bhi3xpwgq0o6l" path="res://lygte.glb" id="2_b2eah"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_d842a"]
+
+[node name="Lamp" instance=ExtResource("1_erd5m")]
+
+[node name="CollisionShape3D" parent="." index="0"]
+shape = SubResource("BoxShape3D_d842a")
+
+[node name="lygte" parent="." index="1" instance=ExtResource("2_b2eah")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, -0.571286, 0)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.367507, 0)
+light_color = Color(0.671866, 0.433224, 0.273774, 1)
+light_volumetric_fog_energy = 3.424
+omni_range = 6.0
+omni_attenuation = 2.0
+omni_shadow_mode = 0

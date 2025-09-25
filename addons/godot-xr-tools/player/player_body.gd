@@ -719,12 +719,15 @@ func _apply_velocity_and_control(delta: float):
 				dir_forward * -ground_control_velocity.y +
 				dir_right * ground_control_velocity.x
 		) * XRServer.world_scale
+		
+
 
 		# Apply control velocity to horizontal velocity based on traction
 		var current_traction := XRToolsGroundPhysicsSettings.get_move_traction(
 				ground_physics, default_physics)
 		var traction_factor: float = clamp(current_traction * delta, 0.0, 1.0)
 		horizontal_velocity = horizontal_velocity.lerp(control_velocity, traction_factor)
+
 
 	# Prevent the player from moving up steep slopes
 	if on_ground:
@@ -869,8 +872,28 @@ static func find_instance(node: Node) -> XRToolsPlayerBody:
 		"*",
 		"XRToolsPlayerBody") as XRToolsPlayerBody
 		
-func _on_wall_body_entered(body: Node):
+func _on_wall_body_entered(body: Node) -> void:
 	print("Kollision i scene 1 udenfor med: ", body.name)
 	if body.name == "Player":
 		print("Kollision i scene 1 indenfor med: ", body.name)
 		get_tree().change_scene_to_file("res://kokken.tscn")
+		
+func _on_vinrum_body_entered(body: Node):
+	print("Kollision til vinrum: ", body.name)
+	if body.name == "Player":
+		print("Kollision vinrum indenfor med: ", body.name)
+		get_tree().change_scene_to_file("res://vinrum.tscn")
+
+
+func _on_back_2_gang_body_entered(body: Node) -> void:
+	print("backinblack: ", body.name)
+	if body.name == "Player":
+		print("Kollision player with backtogang: ", body.name)
+		get_tree().change_scene_to_file("res://gangeftervin.tscn")
+
+
+func _on_bibelrum_body_entered(body: Node) -> void:
+	print("tothebibel: ", body.name)
+	if body.name == "Player":
+		print("Big ost to: ", body.name)
+		get_tree().change_scene_to_file("res://osterum.tscn")

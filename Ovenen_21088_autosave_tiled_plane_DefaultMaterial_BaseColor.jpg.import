@@ -2,17 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dqa5h147c1nac"
-path.s3tc="res://.godot/imported/farve_heligvand.png-0ef1b1ed1ad286601d3eabef68c708ab.s3tc.ctex"
+uid="uid://dtlyawowto4s4"
+path.s3tc="res://.godot/imported/Ovenen_21088_autosave_tiled_plane_DefaultMaterial_BaseColor.jpg-a9bd8f315c7a3de1a17f3a748522c646.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "3a3042d67b571ef8b01e1125f9230d7a"
+}
 
 [deps]
 
-source_file="res://textures/farve_heligvand.png"
-dest_files=["res://.godot/imported/farve_heligvand.png-0ef1b1ed1ad286601d3eabef68c708ab.s3tc.ctex"]
+source_file="res://Ovenen_21088_autosave_tiled_plane_DefaultMaterial_BaseColor.jpg"
+dest_files=["res://.godot/imported/Ovenen_21088_autosave_tiled_plane_DefaultMaterial_BaseColor.jpg-a9bd8f315c7a3de1a17f3a748522c646.s3tc.ctex"]
 
 [params]
 

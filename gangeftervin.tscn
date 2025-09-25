@@ -102,7 +102,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.957542, 4.48781, 36.1065)
 shape = SubResource("BoxShape3D_w6fqb")
 
 [node name="Player" type="XROrigin3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -0.143033, 0)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -0.143033, -15.6147)
 
 [node name="XRCamera3D" type="XRCamera3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
@@ -130,6 +130,7 @@ turn_mode = 0
 [node name="FunctionPickup" parent="Player/righty" instance=ExtResource("3_n48y4")]
 
 [node name="Player" parent="Player" instance=ExtResource("7_ek42u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15.5625)
 collision_layer = 524294
 collision_mask = 769
 
@@ -169,6 +170,6 @@ volume_db = -39.83
 autoplay = true
 
 [node name="Lamp" parent="." instance=ExtResource("11_nga6m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75465, 1.03345, 2.02881)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75465, 1.03345, -13.7179)
 
 [connection signal="body_entered" from="Bibelrum" to="Player/Player" method="_on_bibelrum_body_entered"]

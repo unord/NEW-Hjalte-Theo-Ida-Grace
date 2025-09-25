@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://dj44640ft8mks"]
+
+[ext_resource type="PackedScene" uid="uid://c8l60rnugru40" path="res://addons/godot-xr-tools/objects/pickable.tscn" id="1_p4ypk"]
+[ext_resource type="PackedScene" uid="uid://tcjxr8nxdjnk" path="res://helig vand.blend" id="2_rxxno"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ccr86"]
+radius = 0.194268
+
+[node name="holywaterpickupable" instance=ExtResource("1_p4ypk")]
+
+[node name="CollisionShape3D" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0737798, 0.326497, 0.156764)
+shape = SubResource("SphereShape3D_ccr86")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0758247, 0.248187, 0.0946097)
+light_color = Color(0.195514, 0.522651, 0.358437, 1)
+light_energy = 4.273
+omni_range = 1.102
+
+[node name="helig vand" parent="." index="2" instance=ExtResource("2_rxxno")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -0.0664427, 0.210443, 0.154953)

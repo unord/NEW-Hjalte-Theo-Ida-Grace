@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://b3andlsposkc1"]
+[gd_scene load_steps=29 format=3 uid="uid://b3andlsposkc1"]
 
 [ext_resource type="Script" uid="uid://cm836a1gqeg5u" path="res://code.gd" id="1_m0q3j"]
 [ext_resource type="PackedScene" uid="uid://hpr0v012ghsb" path="res://addons/godot-xr-tools/hands/scenes/highpoly/left_tac_glove.tscn" id="2_3fq0p"]
@@ -12,8 +12,9 @@
 [ext_resource type="AudioStream" uid="uid://bs8b4li0cfg8m" path="res://Monday Chill.wav" id="10_la0rv"]
 [ext_resource type="AudioStream" uid="uid://d25p3w5p3d7vj" path="res://door aaben 1.mp3" id="12_cvscd"]
 [ext_resource type="Script" uid="uid://bjrem6rk026ej" path="res://audio_stream_player_3d.gd" id="13_cvscd"]
-[ext_resource type="PackedScene" uid="uid://clx1xff0gmkp0" path="res://Untitled.glb" id="14_cvscd"]
+[ext_resource type="PackedScene" uid="uid://df4d6wlg2ebtp" path="res://lillebordpickupable.tscn" id="14_fkpbv"]
 [ext_resource type="PackedScene" uid="uid://bgrbelbjsrwdc" path="res://dagboggrabbable.tscn" id="15_fkpbv"]
+[ext_resource type="PackedScene" uid="uid://dthik2qqe2q8k" path="res://bord.glb" id="15_wv21t"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aheu0"]
 albedo_color = Color(0.996379, 0.892274, 0.740514, 1)
@@ -58,8 +59,8 @@ fog_depth_curve = 0.574349
 fog_depth_begin = 0.0
 fog_depth_end = 50.0
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_ljpd4"]
-size = Vector3(1.73511, 1.04102, 4.77344)
+[sub_resource type="BoxShape3D" id="BoxShape3D_74jgs"]
+size = Vector3(1.24896, 0.830734, 2.75348)
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_m0q3j")
@@ -193,22 +194,25 @@ stream = ExtResource("10_la0rv")
 volume_db = -39.83
 autoplay = true
 
+[node name="PickableObject2" parent="." instance=ExtResource("15_fkpbv")]
+transform = Transform3D(0.943762, 0.0920544, -0.317553, -0.0970792, 0.995277, 7.88478e-09, 0.316053, 0.0308278, 0.948241, 1.92852, 0.803353, -1.78629)
+can_sleep = false
+
+[node name="Lamp" parent="." instance=ExtResource("9_la0rv")]
+transform = Transform3D(0.850591, 0, 0.525828, 0, 1, 0, -0.525828, 0, 0.850591, 2.01535, 1.44165, -1.2925)
+
+[node name="PickableObject" parent="." instance=ExtResource("14_fkpbv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.12886, 0, -3.61604)
+
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.230111, -2.40817)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.283989, 0)
+
+[node name="bord" parent="StaticBody3D" instance=ExtResource("15_wv21t")]
+transform = Transform3D(0.097739, 0, -1.49681, 0, 1.5, 0, 1.49681, 0, 0.097739, 2.00255, -0.0395253, -1.32683)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.80188, 0.0205078, -0.77832)
-shape = SubResource("BoxShape3D_ljpd4")
-
-[node name="Lamp" parent="StaticBody3D" instance=ExtResource("9_la0rv")]
-transform = Transform3D(0.850591, 0, 0.525828, 0, 1, 0, -0.525828, 0, 0.850591, 1.37235, 1.25005, -0.461516)
-
-[node name="Untitled" parent="StaticBody3D" instance=ExtResource("14_cvscd")]
-transform = Transform3D(-0.0249225, 0, -1.99984, 0, 2, 0, 1.99984, 0, -0.0249225, 1.80414, -0.556079, 0)
-
-[node name="PickableObject2" parent="." instance=ExtResource("15_fkpbv")]
-transform = Transform3D(0.943762, 0.0920544, -0.317553, -0.0970792, 0.995277, 7.88478e-09, 0.316053, 0.0308278, 0.948241, 1.28552, 0.381645, -3.36347)
-can_sleep = false
+transform = Transform3D(0.996425, 0, 0.0844778, 0, 1, 0, -0.0844778, 0, 0.996425, 1.93201, 0.382017, -1.86507)
+shape = SubResource("BoxShape3D_74jgs")
 
 [connection signal="body_entered" from="Wall" to="Player/Player" method="_on_wall_body_entered"]
 [connection signal="body_entered" from="Vinrum" to="Player/Player" method="_on_vinrum_body_entered"]

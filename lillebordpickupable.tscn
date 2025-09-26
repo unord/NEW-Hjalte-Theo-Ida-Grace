@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://df4d6wlg2ebtp"]
+
+[ext_resource type="PackedScene" uid="uid://c8l60rnugru40" path="res://addons/godot-xr-tools/objects/pickable.tscn" id="1_1dbn5"]
+[ext_resource type="PackedScene" uid="uid://byqfdafjnp7o5" path="res://lillebord.glb" id="2_xlmkp"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_oetyy"]
+size = Vector3(0.497009, 0.551392, 0.469727)
+
+[node name="PickableObject" instance=ExtResource("1_1dbn5")]
+
+[node name="CollisionShape3D" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.67984, 0.276672, 0.000488281)
+shape = SubResource("BoxShape3D_oetyy")
+
+[node name="lillebord" parent="." index="1" instance=ExtResource("2_xlmkp")]

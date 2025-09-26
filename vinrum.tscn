@@ -84,16 +84,6 @@ script/source = "extends AnimationPlayer
 [sub_resource type="BoxShape3D" id="BoxShape3D_ef5gr"]
 size = Vector3(0.414246, 1, 2.77637)
 
-[sub_resource type="Animation" id="Animation_y8dyw"]
-resource_name = "back2ganganim"
-tracks/0/type = "position_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0.0333333, 1, -1.85924, -0.77681, -15.7869, 0.866667, 1, -1.85924, 0.558687, -15.7869)
-
 [sub_resource type="Animation" id="Animation_35b7e"]
 length = 0.001
 tracks/0/type = "position_3d"
@@ -103,6 +93,16 @@ tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = PackedFloat32Array(0, 1, -1.85924, 0.558687, -15.7869)
+
+[sub_resource type="Animation" id="Animation_y8dyw"]
+resource_name = "back2ganganim"
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0.0333333, 1, -1.85924, -0.77681, -15.7869, 0.866667, 1, -1.85924, 0.558687, -15.7869)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2b5ra"]
 _data = {

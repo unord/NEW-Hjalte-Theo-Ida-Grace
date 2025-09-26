@@ -326,6 +326,7 @@ mesh = SubResource("TextMesh_e38dq")
 [node name="Label3D" type="Label3D" parent="MeshInstance3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.44409)
 outline_modulate = Color(0.443137, 1, 0.219608, 0)
-text = "SOMETIMES YOU DIE AND THAT SUCKS"
+text = "DEN HVIDE DAME TOG DIG.
+DIN MISSION ER IKKE FULFØRT."
 font = SubResource("FontFile_v6a8b")
 font_size = 47

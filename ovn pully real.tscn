@@ -1,15 +1,58 @@
-[gd_scene load_steps=3 format=3 uid="uid://bdix771emh045"]
+[gd_scene load_steps=11 format=3 uid="uid://bdix771emh045"]
 
 [ext_resource type="PackedScene" uid="uid://dq80bndpvwn4n" path="res://Ovenen_21088_autosave.glb" id="1_s60bx"]
 
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_r3qpj"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_s60bx"]
+animation = &"Circle_007"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_r3qpj"]
+animation = &"Plane_004Action"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_o3o5u"]
+animation = &"Circle_006"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_riwwr"]
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_1den3"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_qjv48"]
+graph_offset = Vector2(-462.7, 30.9)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_o3o5u")
+nodes/Animation/position = Vector2(-260, 120)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_s60bx")
+"nodes/Animation 2/position" = Vector2(-260, 300)
+"nodes/Animation 3/node" = SubResource("AnimationNodeAnimation_r3qpj")
+"nodes/Animation 3/position" = Vector2(-60, 420)
+nodes/Blend2/node = SubResource("AnimationNodeBlend2_1den3")
+nodes/Blend2/position = Vector2(-20, 160)
+"nodes/Blend2 2/node" = SubResource("AnimationNodeBlend2_riwwr")
+"nodes/Blend2 2/position" = Vector2(300, 240)
+nodes/output/position = Vector2(560, 240)
+node_connections = [&"Blend2", 0, &"Animation", &"Blend2", 1, &"Animation 2", &"Blend2 2", 0, &"Animation 3", &"Blend2 2", 1, &"Blend2", &"output", 0, &"Blend2 2"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_u4q0s"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mghx7"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_jqcl6"]
+states/BlendTree/node = SubResource("AnimationNodeBlendTree_qjv48")
+states/BlendTree/position = Vector2(431, 90)
+transitions = ["Start", "BlendTree", SubResource("AnimationNodeStateMachineTransition_u4q0s"), "BlendTree", "End", SubResource("AnimationNodeStateMachineTransition_mghx7")]
 
 [node name="Ovenen_21088_autosave" instance=ExtResource("1_s60bx")]
 
+[node name="Circle_006" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.76492, 1.66324, 4.09099)
+
 [node name="AnimationPlayer" parent="." index="18"]
-process_mode = 3
+process_thread_group = 1
+process_thread_group_order = 0
+process_thread_messages = 0
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="19"]
-root_node = NodePath("../AnimationPlayer")
-tree_root = SubResource("AnimationNodeStateMachine_r3qpj")
-advance_expression_base_node = NodePath("../AnimationPlayer")
+tree_root = SubResource("AnimationNodeStateMachine_jqcl6")
+anim_player = NodePath("../AnimationPlayer")
+parameters/BlendTree/Blend2/blend_amount = 0.5
+"parameters/BlendTree/Blend2 2/blend_amount" = 0.5

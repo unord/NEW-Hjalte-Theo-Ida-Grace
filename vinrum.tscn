@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://b4btni4d41qre"]
+[gd_scene load_steps=33 format=3 uid="uid://b4btni4d41qre"]
 
 [ext_resource type="Script" uid="uid://bucfc0xabu2rg" path="res://vinrum.gd" id="1_61ffu"]
 [ext_resource type="PackedScene" uid="uid://hpr0v012ghsb" path="res://addons/godot-xr-tools/hands/scenes/highpoly/left_tac_glove.tscn" id="1_s5cgr"]
@@ -12,7 +12,6 @@
 [ext_resource type="AudioStream" uid="uid://d25p3w5p3d7vj" path="res://door aaben 1.mp3" id="8_ycll3"]
 [ext_resource type="PackedScene" uid="uid://dot6gwmhhjf1d" path="res://kælderen med vin.glb" id="11_hrd88"]
 [ext_resource type="Script" uid="uid://dq7vvomtge1ar" path="res://back_2_gang.gd" id="12_8xwos"]
-[ext_resource type="Script" uid="uid://8wqye2pdday8" path="res://animation_player.gd" id="13_y8dyw"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ij55x"]
 size = Vector3(28.1697, 0.49707, 27.5725)
@@ -69,9 +68,27 @@ tracks/0/path = NodePath("blood lol")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = PackedFloat32Array(0, 1, 23.2223, -1.67925, 0, 9.93333, 1, 23.2223, 1.07992, 0)
+tracks/1/type = "position_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("back2gang")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, -1.859, -2, -15.787, 0.233333, 1, -1.859, 1, -15.787)
+
+[sub_resource type="Animation" id="Animation_8xwos"]
+length = 0.001
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("back2gang")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, -1.85924, 0.558687, -15.7869)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hrd88"]
 _data = {
+&"RESET": SubResource("Animation_8xwos"),
 &"bloodup": SubResource("Animation_adn5r")
 }
 
@@ -83,32 +100,6 @@ script/source = "extends AnimationPlayer
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ef5gr"]
 size = Vector3(0.414246, 1, 2.77637)
-
-[sub_resource type="Animation" id="Animation_35b7e"]
-length = 0.001
-tracks/0/type = "position_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, -1.85924, 0.558687, -15.7869)
-
-[sub_resource type="Animation" id="Animation_y8dyw"]
-resource_name = "back2ganganim"
-tracks/0/type = "position_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0.0333333, 1, -1.85924, -0.77681, -15.7869, 0.866667, 1, -1.85924, 0.558687, -15.7869)
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_2b5ra"]
-_data = {
-&"RESET": SubResource("Animation_35b7e"),
-&"back2ganganim": SubResource("Animation_y8dyw")
-}
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_61ffu")
@@ -242,13 +233,6 @@ mesh = SubResource("BoxMesh_hrd88")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.292877, 0, 0.0112305)
 shape = SubResource("BoxShape3D_ef5gr")
 
-[node name="animationalso" type="AnimationPlayer" parent="back2gang"]
-libraries = {
-&"": SubResource("AnimationLibrary_2b5ra")
-}
-script = ExtResource("13_y8dyw")
-
 [connection signal="child_entered_tree" from="." to="Player/Player" method="_on_node_3d_child_entered_tree"]
 [connection signal="body_entered" from="blood trigger2" to="blood lol" method="_on_blood_trigger_2_body_entered"]
-[connection signal="body_entered" from="blood trigger2" to="back2gang" method="_on_blood_trigger_2_body_entered"]
 [connection signal="body_entered" from="back2gang" to="Player/Player" method="_on_back_2_gang_body_entered"]

@@ -2,14 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dlja32777e2f7"
+uid="uid://bee6q3xgn36xl"
 path.s3tc="res://.godot/imported/Untitled_Table_DefaultMaterial_Metallic-Table_DefaultMaterial_Roughness.png-6b8e968287a284bda19dd6a39f27a0a3.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
-}
-generator_parameters={
-"md5": "1b37c35548b4e16c3b0e063077f54c23"
 }
 
 [deps]

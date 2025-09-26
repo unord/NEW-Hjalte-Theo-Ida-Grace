@@ -2,14 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c0814ptdvh2yg"
+uid="uid://pi5hrysb27ox"
 path.s3tc="res://.godot/imported/Untitled_Table_DefaultMaterial_BaseColor.jpg-65fb645201b3d2f09f88df34b0f95fed.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
-}
-generator_parameters={
-"md5": "2666fda1f9eb742fa13df59011bffa1d"
 }
 
 [deps]

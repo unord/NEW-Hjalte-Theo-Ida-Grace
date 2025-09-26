@@ -2,14 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://jc3fo2gixdnr"
+uid="uid://dr2e0hga762cy"
 path.s3tc="res://.godot/imported/Untitled_chairs_DefaultMaterial_Metallic.jpg-chairs_DefaultMaterial_Roughness.png-9ad67d8164a97d29f468ac239c5e4895.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
-}
-generator_parameters={
-"md5": "a619a58c6a10808c9cff48891ac7d935"
 }
 
 [deps]

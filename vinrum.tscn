@@ -1,9 +1,8 @@
-[gd_scene load_steps=33 format=3 uid="uid://b4btni4d41qre"]
+[gd_scene load_steps=35 format=3 uid="uid://b4btni4d41qre"]
 
 [ext_resource type="Script" uid="uid://bucfc0xabu2rg" path="res://vinrum.gd" id="1_61ffu"]
 [ext_resource type="PackedScene" uid="uid://hpr0v012ghsb" path="res://addons/godot-xr-tools/hands/scenes/highpoly/left_tac_glove.tscn" id="1_s5cgr"]
 [ext_resource type="PackedScene" uid="uid://b4ysuy43poobf" path="res://addons/godot-xr-tools/functions/function_pickup.tscn" id="2_76myk"]
-[ext_resource type="Script" uid="uid://cdlyjxc31yit0" path="res://directional_light_3d.gd" id="2_adn5r"]
 [ext_resource type="PackedScene" uid="uid://dup2vp8v5rpi5" path="res://addons/godot-xr-tools/hands/scenes/highpoly/right_tac_glove.tscn" id="3_ycll3"]
 [ext_resource type="PackedScene" uid="uid://bl2nuu3qhlb5k" path="res://addons/godot-xr-tools/functions/movement_direct.tscn" id="4_61ffu"]
 [ext_resource type="PackedScene" uid="uid://b6bk2pj8vbj28" path="res://addons/godot-xr-tools/functions/movement_turn.tscn" id="5_adn5r"]
@@ -12,6 +11,8 @@
 [ext_resource type="AudioStream" uid="uid://d25p3w5p3d7vj" path="res://door aaben 1.mp3" id="8_ycll3"]
 [ext_resource type="PackedScene" uid="uid://dot6gwmhhjf1d" path="res://kælderen med vin.glb" id="11_hrd88"]
 [ext_resource type="Script" uid="uid://dq7vvomtge1ar" path="res://back_2_gang.gd" id="12_8xwos"]
+[ext_resource type="PackedScene" uid="uid://dui60f3f8brp1" path="res://lamp_godot.tscn" id="13_35b7e"]
+[ext_resource type="PackedScene" uid="uid://be4kuudyiust7" path="res://pickupablevin.tscn" id="13_y8dyw"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ij55x"]
 size = Vector3(28.1697, 0.49707, 27.5725)
@@ -32,11 +33,10 @@ size = Vector3(6.88501, 7.54938, 0.283325)
 size = Vector3(12.399, 6.99713, 0.582764)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2wf7y"]
-size = Vector3(6.33575, 6.71664, 1.14783)
+size = Vector3(9.82948, 6.71664, 0.793061)
 
-[sub_resource type="Environment" id="Environment_8xwos"]
-background_mode = 1
-background_color = Color(0.510284, 0.603269, 0.326414, 1)
+[sub_resource type="BoxShape3D" id="BoxShape3D_tdwdh"]
+size = Vector3(5.08362, 4.66882, 1.47119)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_y8dyw"]
 
@@ -45,7 +45,7 @@ script/source = "extends RigidBody3D
 "
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_s5cgr"]
-radius = 1.98061
+radius = 0.609874
 
 [sub_resource type="SphereMesh" id="SphereMesh_76myk"]
 radius = 2.0
@@ -65,14 +65,14 @@ size = Vector3(60, 1, 60)
 
 [sub_resource type="Animation" id="Animation_adn5r"]
 resource_name = "bloodup"
-length = 10.0
+length = 15.0
 tracks/0/type = "position_3d"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath("blood lol")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 23.2223, -1.67925, 0, 9.93333, 1, 23.2223, 1.07992, 0)
+tracks/0/keys = PackedFloat32Array(2.16667, 1, 23.2223, -1.67925, 0, 14.9333, 1, 23.2223, 1.07992, 0)
 tracks/1/type = "position_3d"
 tracks/1/imported = false
 tracks/1/enabled = true
@@ -93,6 +93,17 @@ _data = {
 [sub_resource type="GDScript" id="GDScript_ycll3"]
 script/source = "extends AnimationPlayer
 "
+
+[sub_resource type="Environment" id="Environment_2b5ra"]
+background_mode = 2
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.0987324, 0.326233, 0.26362, 1)
+fog_light_energy = 1.67
+fog_density = 1.0
+fog_depth_curve = 0.615572
+fog_depth_begin = 0.0
+fog_depth_end = 50.0
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_61ffu")
@@ -128,18 +139,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.2817, 3.38144, -9.99078)
 shape = SubResource("BoxShape3D_2b5ra")
 
 [node name="CollisionShape3D7" type="CollisionShape3D" parent="StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.3896, 2.85832, 2.65174)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.6427, 2.85832, 2.96087)
 shape = SubResource("BoxShape3D_2wf7y")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 2.70723, 0)
-script = ExtResource("2_adn5r")
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="DirectionalLight3D"]
-environment = SubResource("Environment_8xwos")
+[node name="CollisionShape3D8" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.9111, 2.30497, 10.6981)
+shape = SubResource("BoxShape3D_tdwdh")
 
 [node name="Player" type="XROrigin3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -0.143033, 0)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -0.143033, -15.9376)
 
 [node name="XRCamera3D" type="XRCamera3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
@@ -166,6 +174,7 @@ turn_mode = 0
 [node name="FunctionPickup" parent="Player/righty" instance=ExtResource("2_76myk")]
 
 [node name="Player" parent="Player" instance=ExtResource("6_hrd88")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -16.2437)
 collision_layer = 524294
 collision_mask = 769
 
@@ -174,7 +183,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.526939, 1.03602, 0)
 shape = SubResource("CapsuleShape3D_y8dyw")
 
 [node name="blood trigger2" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.25771, 2.237, -2.05225)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.25771, 1.03821, -1.22459)
 collision_layer = 4
 collision_mask = 5
 lock_rotation = true
@@ -188,6 +197,8 @@ script = SubResource("GDScript_76myk")
 shape = SubResource("SphereShape3D_s5cgr")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="blood trigger2"]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+visible = false
 mesh = SubResource("SphereMesh_76myk")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
@@ -224,6 +235,15 @@ libraries = {
 &"": SubResource("AnimationLibrary_hrd88")
 }
 script = SubResource("GDScript_ycll3")
+
+[node name="PickableObject" parent="." instance=ExtResource("13_y8dyw")]
+transform = Transform3D(-0.838946, 0, 0.544214, 0, 1, 0, -0.544214, 0, -0.838946, 5.60463, 0.141382, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_2b5ra")
+
+[node name="Lamp" parent="." instance=ExtResource("13_35b7e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.41458, 0.74618, -13.8757)
 
 [connection signal="child_entered_tree" from="." to="Player/Player" method="_on_node_3d_child_entered_tree"]
 [connection signal="body_entered" from="blood trigger2" to="." method="_on_blood_trigger_2_body_entered"]

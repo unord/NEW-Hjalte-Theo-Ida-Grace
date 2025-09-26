@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://be4kuudyiust7"]
+
+[ext_resource type="PackedScene" uid="uid://c8l60rnugru40" path="res://addons/godot-xr-tools/objects/pickable.tscn" id="1_wx7h7"]
+[ext_resource type="PackedScene" uid="uid://tcjxr8nxdjnk" path="res://helig vand.blend" id="2_32a5o"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_wx7h7"]
+height = 0.928101
+radius = 0.389648
+
+[node name="PickableObject" instance=ExtResource("1_wx7h7")]
+
+[node name="CollisionShape3D" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.371399, 0)
+shape = SubResource("CylinderShape3D_wx7h7")
+
+[node name="helig vand" parent="." index="1" instance=ExtResource("2_32a5o")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.473541, 0)
+light_color = Color(0.662023, 0.542339, 0.214859, 1)
+light_energy = 3.747
+shadow_enabled = true
+omni_range = 1.0

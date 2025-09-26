@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://bgrbelbjsrwdc"]
+
+[ext_resource type="PackedScene" uid="uid://c8l60rnugru40" path="res://addons/godot-xr-tools/objects/pickable.tscn" id="1_a07lt"]
+[ext_resource type="PackedScene" uid="uid://dinixco245d0e" path="res://dagbog.glb" id="2_mms4a"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_50ggg"]
+size = Vector3(0.572998, 0.183594, 0.776024)
+
+[node name="PickableObject" instance=ExtResource("1_a07lt")]
+
+[node name="CollisionShape3D" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00012207, 0.0644531, -0.226017)
+shape = SubResource("BoxShape3D_50ggg")
+
+[node name="dagbog" parent="." index="1" instance=ExtResource("2_mms4a")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.76041, -0.2)
+visible = false
+light_color = Color(1, 1, 0.176471, 1)

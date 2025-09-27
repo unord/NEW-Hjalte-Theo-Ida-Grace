@@ -63,6 +63,9 @@ albedo_color = Color(0.504232, 0.141976, 0.141679, 1)
 material = SubResource("StandardMaterial3D_s5cgr")
 size = Vector3(60, 1, 60)
 
+[sub_resource type="Animation" id="Animation_8xwos"]
+length = 0.001
+
 [sub_resource type="Animation" id="Animation_adn5r"]
 resource_name = "bloodup"
 length = 15.0
@@ -80,9 +83,6 @@ tracks/1/path = NodePath("back2gang")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = PackedFloat32Array(0, 1, -1.859, -2, -15.787, 0.233333, 1, -1.859, 1, -15.787)
-
-[sub_resource type="Animation" id="Animation_8xwos"]
-length = 0.001
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hrd88"]
 _data = {

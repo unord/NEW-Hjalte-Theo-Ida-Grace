@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dtbbjyu44e2ua"
+path="res://.godot/imported/Circus - Theme Song.wav-e03b1ee6efb4574ad6a646456363861b.sample"
+
+[deps]
+
+source_file="res://Circus - Theme Song.wav"
+dest_files=["res://.godot/imported/Circus - Theme Song.wav-e03b1ee6efb4574ad6a646456363861b.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
